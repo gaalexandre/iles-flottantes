@@ -1,12 +1,26 @@
-all:sfml-app
+CC=g++
+CFLAGS=-Wall -Wextra
+EXECNAME=sfml-app
+LIBSFML=-lsfml-graphics -lsfml-window -lsfml-system
+
+
+
+all: $(EXECNAME)
+
+
+
+$(EXECNAME):main.o
+	$(CC) $(CFLAGS) -o $@ $^ $(LIBSFML)
+
+%.o:%.c
+	$(CC) $(CFLAGS) -c $<
+
 
 install:
 	sudo apt-get install libsfml-dev
 
-sfml-app:main.o
-	g++ main.o -o sfml-app -lsfml-graphics -lsfml-window -lsfml-system
+clean:
+	rm -rf *.o
 
-%.o:%.c
-	g++ -c main.c
-
-
+clear: clean
+	rm -rf $(EXECNAME)
