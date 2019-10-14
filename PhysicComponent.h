@@ -1,16 +1,16 @@
-#ifndef GRAPHIC_COMP_H
-#define GRAPHIC_COMP_H
+#ifndef PHYSIC_COMPONENT_H
+#define PHYSIC_COMPONENT_H
 
 #include <forward_list>
 
-class Graphic
+class PhysicComponent
 {
     public:
         float m_x;
         float m_y;
         bool m_gravity;
-    private:
-        
+    protected:
+  
 };
 
 
