@@ -1,4 +1,3 @@
- Specify the docker image to use (only used if using docker runners)
 # See: http://doc.gitlab.com/ee/ci/docker/using_docker_images.html
 image: ubuntu:14.04
 
@@ -12,4 +11,4 @@ before_script:
 compile:
   script:
   # Compile our app
-  - make build
+  - make
