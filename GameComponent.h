@@ -1,14 +1,18 @@
-#ifndef GAMECOMPONENT_H
-#define GAMECOMPONENT_H
+#ifndef GAME_COMPONENT_H
+#define GAME_COMPONENT_H
+
+#include "GraphicComponent.h"
+#include "PhysicComponent.h"
+#include "SystemComponent.h"
 
 class GameComponent
 {
  public:
   
- protected:
-  GraphicComponent* m_graphicComponent(nullptr);
-  PhysicComponent* m_physicComponent(nullptr);
-  Component* m_systemComponent(nullptr);
+protected:
+  GraphicComponent* m_graphicComponent{nullptr};
+  PhysicComponent* m_physicComponent{nullptr};
+  SystemComponent* m_systemComponent{nullptr};
 };
 
 

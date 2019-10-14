@@ -1,15 +1,15 @@
-#ifndef PHYSIC_H
-#define PHYSIC_H
+#ifndef PHYSIC_Module_H
+#define PHYSIC_Module_H
 
 #include <forward_list>
-
-class Physic
+#include "PhysicComponent.h"
+class PhysicModule
 {
  public:
   bool addComponent(PhysicComponent &component);
   void update();
  private:
-  forward_list<PhysicComponent*> m_components; 
+  std::forward_list<PhysicComponent*> m_components; 
 };
 
 
