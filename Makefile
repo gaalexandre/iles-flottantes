@@ -12,8 +12,10 @@ all: $(EXECNAME)
 $(EXECNAME):main.o
 	$(CC) $(CFLAGS) -o $@ $^ $(LIBSFML)
 
-%.o:%.c
+%.o:%.cpp
 	$(CC) $(CFLAGS) -c $<
+
+
 
 
 install:
