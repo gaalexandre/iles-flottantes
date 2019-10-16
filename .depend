@@ -1,3 +1,0 @@
-main.o: main.cpp Jeu.h GameComponent.h GraphicComponent.h \
- PhysicComponent.h SystemComponent.h PhysicModule.h GraphicModule.h \
- SystemModule.h
