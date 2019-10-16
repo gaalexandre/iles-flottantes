@@ -11,6 +11,7 @@ class PhysicComponent
     protected:
         sf::FloatRect m_hitbox;
         bool m_gravity;
+        bool solid;
 
   
 };
