@@ -1,6 +1,7 @@
 #ifndef PERSO_H
 #define PERSO_H
 
+#include "GameComponent.h"
 
 class Perso : public GameComponent
 {

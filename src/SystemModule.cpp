@@ -1,5 +1,6 @@
 #include "SystemModule.h"
 #include "Perso.h"
+#include <SFML/Window.hpp>
 
 bool SystemModule::addComponent(SystemComponent &component)
 {
@@ -12,7 +13,7 @@ void SystemModule::manageEvent(Event event)
   switch(event.KeyEvent.code)
     {
     case sf::Keyboard::Key::Up :
-      Perso.saut(10);//Valeur de l'accélération à déterminer
+      //Perso.saut(10);//Valeur de l'accélération à déterminer
       break;
     }
   
