@@ -27,7 +27,7 @@ void Jeu::eventLoop()
 	  break;
 
         case sf::Event::KeyPressed:
-	  m_systemModule.manageEvent(Event::some_event);
+	  m_systemModule.manageEvent(m_event);
 	  break;
 
         default:
