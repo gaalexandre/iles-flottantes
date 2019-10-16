@@ -2,14 +2,16 @@
 #define PHYSIC_COMPONENT_H
 
 #include <forward_list>
+#include <SFML/Graphics.hpp>
 
 class PhysicComponent
 {
     public:
-        float m_x;
-        float m_y;
-        bool m_gravity;
+        
     protected:
+        sf::FloatRect m_hitbox;
+        bool m_gravity;
+
   
 };
 
