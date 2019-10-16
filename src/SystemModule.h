@@ -2,6 +2,7 @@
 #define SYSTEM_Module_H
 
 #include <forward_list>
+#include <SFML/Window.hpp>
 #include "SystemComponent.h"
 
 enum class Event{some_event};
@@ -11,7 +12,7 @@ class SystemModule
 {
  public:
   bool addComponent(SystemComponent &component);
-  void manageEvent(Event event);
+  void manageEvent(sf::Event event);
  private:
   std::forward_list<SystemComponent*> m_components; 
 };
