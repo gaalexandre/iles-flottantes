@@ -7,8 +7,8 @@
 class GraphicModule
 {
  public:
-  bool addComponent(GraphicComponent &component);
-  void draw();
+  void addComponent(GraphicComponent &component);
+  void draw(sf::RenderWindow &window);
  private:
   std::forward_list<GraphicComponent*> m_components;
 };
