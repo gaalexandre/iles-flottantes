@@ -1,18 +1,18 @@
 #ifndef MAP_H
 #define MAP_H
 
-class Map : public GameComponent {
+#include <string>
+#include "GameComponent.h"
 
- public :
+class Map : public GameComponent
+{
+
+ public:
+  Map(std::string filename);
   
-
- private :
-  Block **m_blockTab(nullptr);
-
-
+ private:
+  
+  
 };
-
-
-
 
 #endif

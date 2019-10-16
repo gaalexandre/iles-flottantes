@@ -1,11 +1,14 @@
 #include "GraphicModule.h"
 
-bool GraphicModule::addComponent(GraphicComponent &component)
+void GraphicModule::addComponent(GraphicComponent &component)
 {
-  return false;
+  m_components.push_front(&component);
 }
 
-void GraphicModule::draw()
+void GraphicModule::draw(sf::RenderWindow &window)
 {
-  
+  for(auto i(m_components.begin());i!=m_components.end();++i)
+  {
+    window.draw(**i);
+  }
 }

@@ -2,12 +2,9 @@ CC=g++
 CFLAGS=-Wall -Wextra
 EXECNAME=sfml-app
 LIBSFML=-lsfml-graphics -lsfml-window -lsfml-system
-OBJECT=main.o GraphicModule.o PhysicModule.o SystemModule.o Jeu.o
-
+OBJECT=main.o Jeu.o GraphicModule.o PhysicModule.o SystemModule.o Map.o MapGraphic.o MapPhysic.o GameComponent.o
 
 all: $(EXECNAME)
-
-
 
 $(EXECNAME):$(OBJECT)
 	$(CC) $(CFLAGS) -o $@ $^ $(LIBSFML)
