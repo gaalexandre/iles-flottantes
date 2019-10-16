@@ -1,5 +1,6 @@
 #include "Jeu.h"
 #include "Map.h"
+
 int Jeu::gameLoop()
 {
   Map map("mapExemple");

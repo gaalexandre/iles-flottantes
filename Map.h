@@ -9,7 +9,7 @@ class Map : public GameComponent
 
  public:
   Map(std::string filename);
-
+  
  private:
   
   
