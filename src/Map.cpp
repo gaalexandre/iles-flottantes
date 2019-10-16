@@ -29,3 +29,8 @@ Map::Map(std::string filename)
   m_graphicComponent = new MapGraphic(textureFilename, height, width, tileSize, tilesNumber);
   m_physicComponent = new MapPhysic(height, width, tileSize, tilesKind);
 }
+
+
+bool Map::isSolid(float x,float y){
+  return m_physicComponent.isSolid(x,y);
+}

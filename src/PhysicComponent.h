@@ -7,11 +7,17 @@
 class PhysicComponent
 {
     public:
-        
+        float getAbs ();
+        float getOrd ();
+        void setAcceleration(int acc);
     protected:
         sf::FloatRect m_hitbox;
         bool m_gravity;
-        bool solid;
+        bool m_solid;
+        float m_abs;
+        float m_ord;
+        float m_acc;
+  
 
   
 };
