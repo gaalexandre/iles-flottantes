@@ -8,15 +8,14 @@ CFLAGS=-Wall -Wextra
 EXECNAME=sfml-app
 LIBSFML=-lsfml-graphics -lsfml-window -lsfml-system
 OBJECT=main.o Jeu.o GraphicModule.o PhysicModule.o SystemModule.o Map.o MapGraphic.o MapPhysic.o GameComponent.o
-RESOURCES=$(RESDIR)/*
+RESOURCES=$(shell ls $(RESDIR))
 COBJECT=$(addprefix $(OBJDIR)/, $(OBJECT))
 CEXECNAME=$(addprefix $(BINDIR)/, $(EXECNAME))
 MKDEP=g++ -MM
 SRCS=$(SRCDIR)/*.cpp
 HDRS=*.h
 
-all: $(OBJDIR) $(BINDIR) $(CEXECNAME)
-	cp $(RESOURCES) $(BINDIR)
+all: $(OBJDIR) $(BINDIR) $(CEXECNAME) $(addprefix $(BINDIR)/, $(RESOURCES))
 
 $(CEXECNAME):$(COBJECT)
 	$(CC) $(CFLAGS) -o $@ $^ $(LIBSFML)
@@ -27,8 +26,15 @@ $(OBJDIR):
 $(BINDIR):
 	mkdir $(BINDIR)
 
+$(BINDIR)/%: $(RESDIR)/%
+	cp $< $@
+
 .depend: $(SRCS) $(HDRS)
-	$(MKDEP) $(SRCS) > .depend
+	rm -f .depend; \
+	for file in $(SRCS) ; do \
+		echo "$(OBJDIR) \\" >> .depend ; \
+		$(MKDEP) $$file >> .depend ; \
+	done
 
 -include .depend
 
@@ -41,7 +47,7 @@ install:
 
 .PHONY: clean
 clean:
-	rm -rf $(OBJDIR)
+	rm -rf $(OBJDIR) .depend
 
 .PHONY: clear
 clear: clean
