@@ -12,3 +12,4 @@ void PhysicComponent::setAcceleration (float acc){
   m_acc = acc;
   return;
 }
+
