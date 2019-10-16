@@ -7,7 +7,7 @@ bool SystemModule::addComponent(SystemComponent &component)
   return false;
 }
 
-void SystemModule::manageEvent(Event event)
+void SystemModule::manageEvent(sf::Event event)
 {
   // Evènement liés au clavier
   switch(event.KeyEvent.code)

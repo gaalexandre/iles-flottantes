@@ -11,7 +11,7 @@ class SystemModule
 {
  public:
   bool addComponent(SystemComponent &component);
-  void manageEvent(Event event);
+  void manageEvent(sf::Event event);
  private:
   std::forward_list<SystemComponent*> m_components; 
 };
