@@ -32,5 +32,5 @@ Map::Map(std::string filename)
 
 
 bool Map::isSolid(float x,float y){
-  return m_physicComponent.isSolid(x,y);
+  return m_physicComponent->isSolid(x,y);
 }

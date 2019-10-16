@@ -2,6 +2,7 @@
 #define SYSTEM_Module_H
 
 #include <forward_list>
+#include <SFML/Window.hpp>
 #include "SystemComponent.h"
 
 enum class Event{some_event};
