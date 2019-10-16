@@ -10,6 +10,7 @@ class PhysicComponent
         float getAbs ();
         float getOrd ();
         void setAcceleration(int acc);
+        bool isSolid(float x, float y);
     protected:
         sf::FloatRect m_hitbox;
         bool m_gravity;
