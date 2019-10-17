@@ -3,18 +3,31 @@
 
 #include <SFML/Graphics.hpp>
 #include "PhysicComponent.h"
-
+#include <SFML/System.hpp>
 class MapPhysic : public PhysicComponent
 {
 
 public:
-  MapPhysic(int height, int width, int tileSize, const int* tilesKind);
-  
 
-private:
-  const int* m_tilesKind;
-  int m_width;
+  MapPhysic(int height, int width, int tileSize, int const* const* const tilesKind);
+  virtual ~MapPhysic();
 
+    virtual void update(sf::Time t);
+    virtual void collide( PhysicComponent &other);
+    
+protected:
+    
+    
+    virtual bool intersect(sf::Vector2f point);
+    virtual bool intersect(sf::FloatRect rect);
+    
+    
+    const int* const* m_tilesKind;
+    int m_width;
+    int m_height;
+    int m_tileSize;
+    
+    
 };
 
 #endif

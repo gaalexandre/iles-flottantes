@@ -8,11 +8,12 @@ int Jeu::gameLoop()
   Perso perso("persoExample");
   perso.loadGraphicComponent(m_graphicModule);
   map.loadGraphicComponent(m_graphicModule);
-  
+  sf::Clock timer;
+
   while (m_window.isOpen())
   {
     eventLoop();
-    m_physicModule.update();
+    m_physicModule.update( timer.restart() );
     m_window.clear(sf::Color::Black);
     m_graphicModule.draw(m_window);
     m_window.display();

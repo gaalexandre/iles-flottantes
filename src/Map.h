@@ -12,7 +12,7 @@ class Map : public GameComponent
   virtual ~Map();
   
  private:
-  int* m_tilesKind{nullptr}; //il est là juste pour être delete dans le destructeur
+  int** m_tilesKind{nullptr}; //il est là juste pour être delete dans le destructeur
   
 };
 

@@ -6,8 +6,8 @@ MapGraphic::MapGraphic(const std::string& textureFilename, int height, int width
   m_vertices.setPrimitiveType(sf::Quads);
   m_vertices.resize(width * height * 4);
 
-  for (unsigned int i = 0; i < width; ++i)
-	for (unsigned int j = 0; j < height; ++j)
+  for (int i = 0; i < width; ++i)
+	for (int j = 0; j < height; ++j)
 	{
 		int tileNumber = tiles[i + j * width];
 
