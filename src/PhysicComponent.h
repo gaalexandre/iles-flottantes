@@ -7,17 +7,14 @@
 class PhysicComponent
 {
     public:
-        float getAbs ();
-        float getOrd ();
-        void setAcceleration(float acc);
-        virtual bool isSolid(float x, float y) = 0;
+    
+    void update();
+    void collide( PhysicComponent &other);
+    void intersect( sf::Vector2f point);
+    
     protected:
-        sf::FloatRect m_hitbox;
-        bool m_gravity;
-        bool m_solid;
-        float m_abs;
-        float m_ord;
-        float m_acc;
+    
+    
   
 
   

@@ -14,7 +14,7 @@ public:
 private:
   const int* m_tilesKind;
   int m_width;
-
+    
 };
 
 
