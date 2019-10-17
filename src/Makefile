@@ -4,7 +4,7 @@ BINDIR=$(PROJDIR)/bin
 OBJDIR=$(PROJDIR)/obj
 RESDIR=$(PROJDIR)/res
 CC=g++
-CFLAGS=-Wall -Wextra
+CFLAGS=-Wall -Wextra -std=c++17
 EXECNAME=sfml-app
 LIBSFML=-lsfml-graphics -lsfml-window -lsfml-system
 OBJECT=main.o Jeu.o GraphicModule.o PhysicModule.o SystemModule.o Map.o MapGraphic.o MapPhysic.o GameComponent.o
