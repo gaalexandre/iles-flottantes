@@ -8,10 +8,10 @@ class PhysicComponent
 {
     public:
     
-    void update();
-    void collide( PhysicComponent &other);
-    void intersect( sf::Vector2f point);
-    
+    virtual void update() = 0;
+    virtual void collide( PhysicComponent &other) = 0;
+    virtual bool intersect( sf::Vector2f point) = 0;
+    virtual bool intersect(sf::FloatRect rectangle) = 0;
     protected:
     
     

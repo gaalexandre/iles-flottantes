@@ -8,12 +8,22 @@ class MapPhysic : public PhysicComponent
 {
 
 public:
-  MapPhysic(int height, int width, int tileSize, const int* tilesKind);
+  MapPhysic(int height, int width, int tileSize, const int* const* tilesKind);
+    
+// sur quellles coordonnées (?), des float (?) 
   bool isSolid(float x,float y);
 
+protected:
+    virtual void update();
+    virtual void collide( PhysicComponent &other);
+    virtual bool intersect(sf::Vector2f point);
+    virtual bool intersect(sf::FloatRect rect);
 private:
-  const int* m_tilesKind;
+  const int* const* m_tilesKind;
   int m_width;
+  int m_height;
+  int m_tileSize;
+    
     
 };
 
