@@ -1,6 +1,6 @@
 #include "MapPhysic.h"
 
-MapPhysic::MapPhysic(int height, int width, int tileSize, const int* const* tilesKind)
+MapPhysic::MapPhysic(int height, int width, int tileSize, int const* const* const  tilesKind)
 {
     m_tilesKind = tilesKind;
     m_width = width;
@@ -16,6 +16,13 @@ bool MapPhysic::isSolid(float x, float y){
  
 */
 
+/*
+~MapPhysic::MapPhysic()
+{
+    for(int )
+    
+}
+ */
 void MapPhysic::update()
 {
     return;

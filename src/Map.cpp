@@ -2,9 +2,10 @@
 #include "MapGraphic.h"
 #include "MapPhysic.h"
 #include <fstream>
+#include <iostream>
+
 Map::Map(std::string filename) 
 {
-    
   std::ifstream mapFile(filename);
   std::string textureDescriptionFilename, textureFilename;
   int height, width, tileSize;
@@ -13,12 +14,13 @@ Map::Map(std::string filename)
   std::ifstream textureDescription(filename);
   int nbTile;
   textureDescription >> nbTile;
+    std::cout << nbTile << std::endl;
   int *tilesKinds = new int[nbTile];
+    
   for(int i(0);i<nbTile;++i)
     textureDescription >> tilesKinds[i];
 
   int *tilesNumber = new int[height*width];
-
   int **tilesKind = new int*[width];
   for(int i(0);i<width;++i)
   {

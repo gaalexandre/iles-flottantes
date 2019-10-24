@@ -8,7 +8,8 @@ class MapPhysic : public PhysicComponent
 {
 
 public:
-  MapPhysic(int height, int width, int tileSize, const int* const* tilesKind);
+  MapPhysic(int height, int width, int tileSize, int const* const* const tilesKind);
+    ~MapPhysic();
     
 // sur quellles coordonnées (?), des float (?) 
   bool isSolid(float x,float y);
