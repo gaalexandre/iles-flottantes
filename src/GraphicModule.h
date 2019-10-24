@@ -10,7 +10,10 @@ class GraphicModule
   void addComponent(GraphicComponent &component);
   void draw(sf::RenderWindow &window);
  private:
-  std::forward_list<GraphicComponent*> m_components;
+    std::forward_list<GraphicComponent*> m_components;
+    
+    
+    
 };
 
 
