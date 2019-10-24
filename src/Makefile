@@ -52,3 +52,7 @@ clean:
 .PHONY: clear
 clear: clean
 	rm -rf $(BINDIR)
+
+.PHONY: run
+run: all
+	@(cd $(BINDIR) && ./$(EXECNAME))
