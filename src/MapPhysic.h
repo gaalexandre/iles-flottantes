@@ -14,9 +14,12 @@ public:
 // sur quellles coordonnées (?), des float (?) 
   bool isSolid(float x,float y);
 
-protected:
     virtual void update();
     virtual void collide( PhysicComponent &other);
+    
+protected:
+    
+    
     virtual bool intersect(sf::Vector2f point);
     virtual bool intersect(sf::FloatRect rect);
 private:
