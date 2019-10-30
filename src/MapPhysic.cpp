@@ -23,7 +23,7 @@ bool MapPhysic::isSolid(float x, float y){
     
 }
  */
-void MapPhysic::update()
+void MapPhysic::update(sf::Time t)
 {
     return;
 }

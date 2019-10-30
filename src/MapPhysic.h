@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "PhysicComponent.h"
-
+#include <SFML/System.hpp>
 class MapPhysic : public PhysicComponent
 {
 
@@ -14,7 +14,7 @@ public:
 // sur quellles coordonnées (?), des float (?) 
   bool isSolid(float x,float y);
 
-    virtual void update();
+    virtual void update(sf::Time t);
     virtual void collide( PhysicComponent &other);
     
 protected:
