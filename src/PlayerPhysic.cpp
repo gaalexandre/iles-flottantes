@@ -19,21 +19,53 @@ PlayerPhysic::PlayerPhysic(sf::floatRect hitBox)
 
 void PlayerPhysic::update(sf::Time t) // bouge selon les accelaration.
 {
-    
+    m_hitBox_tmp.left = m_hitBox.left;
+    m_hitBox_tmp.top = m_hitBox.top;
+    m_hitBox.left += m_accelerationX*( t.asSeconds() ) ;
+    m_hitBox.top += m_accelerationY*( t.asSeconds() ) ;
     return;
+    
 }
 
 void PlayerPhysic::collide(PhysicComponent &other)
 {
+    //algorithme (?)
+    if(other.intersect(m_hitBox))
+    {
+        
+    }
     return;
 }
 
 
 bool PlayerPhysic::intersect(sf::Vector2f point)
 {
+    for(int i=0;i<m_width;i++)
+    {
+        for(int j = 0;j<m_height;j++)
+        {
+            if( m_hitBox.left == point.x && m_hitBox.top == point.y)
+            {
+                return  true;
+            }
+        }
+    }
+    
     return false;
+
 }
+
 bool PlayerPhysic::intersect(sf::FloatRect rect)
 {
+    for(int i=0;i<m_width;i++)
+    {
+        for(int j = 0;j<m_height ;j++)
+        {
+            if (rect.contains(m_hitBox) )
+            {
+                return true;
+            }
+        }
+    }
     return false;
 }
