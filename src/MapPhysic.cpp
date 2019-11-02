@@ -25,11 +25,15 @@ bool MapPhysic::isSolid(float x, float y){
  */
 void MapPhysic::update(sf::Time t)
 {
+    // Le MapPhysic n'est pas un component dynamique
     return;
 }
 
 void MapPhysic::collide( PhysicComponent &other)
 {
+    // Le Map physic n'est pas un component qui va devoir se modifier face à une
+    // collision
+    
     return;
 }
 

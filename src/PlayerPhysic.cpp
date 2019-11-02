@@ -19,8 +19,7 @@ PlayerPhysic::PlayerPhysic(sf::floatRect hitBox)
 
 void PlayerPhysic::update(sf::Time t) // bouge selon les accelaration.
 {
-    m_hitBox_tmp.left = m_hitBox.left;
-    m_hitBox_tmp.top = m_hitBox.top;
+    m_hitBox_tmp = m_hitBox
     m_hitBox.left += m_accelerationX*( t.asSeconds());
     m_hitBox.top += m_accelerationY*( t.asSeconds() );
     
@@ -31,9 +30,9 @@ void PlayerPhysic::update(sf::Time t) // bouge selon les accelaration.
 void PlayerPhysic::collide(PhysicComponent &other)
 {
     //algorithme (?)
-    if(other.intersect(m_hitBox))
+    if(other.intersect(m_hitBox))  // ne marche pas bien
     {
-        
+        m_hitBox = m_hitBox_tmp
     }
     return;
 }
