@@ -8,11 +8,11 @@ bool PhysicModule::addComponent(PhysicComponent &component)
 }
 
 
-void PhysicModule::update()
+void PhysicModule::update(sf::Time t)
 {
     for(auto it = m_components.begin(); it != m_components.end(); it++)
     {
-        (*it)->update(sf::seconds(1.0));
+        (*it)->update(t);
         for(auto it2 = m_components.begin(); it2 != m_components.end(); it2++)
         {
             if(it2 != it)
