@@ -83,6 +83,6 @@ void PlayerPhysic::setAccelerationY(float accelerationY)
 }
 void PlayerPhysic::addAcceleration(float accelerationX, float accelerationY)
 {
-    m_accelerationY = accelerationY;
-    m_accelerationX = accelerationX;
+    m_accelerationY+= accelerationY;
+    m_accelerationX+= accelerationX;
 }
