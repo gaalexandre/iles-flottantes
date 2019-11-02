@@ -21,8 +21,9 @@ void PlayerPhysic::update(sf::Time t) // bouge selon les accelaration.
 {
     m_hitBox_tmp.left = m_hitBox.left;
     m_hitBox_tmp.top = m_hitBox.top;
-    m_hitBox.left += m_accelerationX*( t.asSeconds() ) ;
-    m_hitBox.top += m_accelerationY*( t.asSeconds() ) ;
+    m_hitBox.left += m_accelerationX*( t.asSeconds());
+    m_hitBox.top += m_accelerationY*( t.asSeconds() );
+    
     return;
     
 }
@@ -68,4 +69,20 @@ bool PlayerPhysic::intersect(sf::FloatRect rect)
         }
     }
     return false;
+}
+
+
+
+void PlayerPhysic::setAccelerationX(float accelerationX)
+{
+    m_accelerationX = accelerationX;
+}
+void PlayerPhysic::setAccelerationY(float accelerationY)
+{
+    m_accelerationY = accelerationY;
+}
+void PlayerPhysic::addAcceleration(float accelerationX, float accelerationY)
+{
+    m_accelerationY = accelerationY;
+    m_accelerationX = accelerationX;
 }

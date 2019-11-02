@@ -22,6 +22,9 @@ public:
 
     virtual void update(sf::Time t);
     virtual void collide( PhysicComponent &other);
+    void setAccelerationX(float);
+    void setAccelerationY(float);
+    void addAcceleration(float, float);
     
 
 protected:
