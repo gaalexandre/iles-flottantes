@@ -1,13 +1,25 @@
 #include "Perso.h"
+#include "PersoGraphic.h"
+//#include "PersoSystem.h"
+//#include "PersoPhysic.h"
+#include <fstream>
 
-void Perso::saut (float acc) {
+Perso::Perso(std::string filename)
+{
+  std::ifstream file(filename);
+  std::string textureFilename;
+  int x,L,y,l;
+  file >> textureFilename >> x >> y >> L >> l;
+  sf::IntRect textureRect(x,y,L,l);
+  m_graphicComponent=new PersoGraphic(textureFilename, &m_transform, textureRect);
+  //m_physicComponent=new PersoPhysic;
+  //m_systemComponent=new PersoSystem;
+  
+}
 
-  if (Map.isSolid(m_physicComponent.getAbs(),m_physicComponent.getOrd()-1))
-    {
-      m_physicComponent.setAcceleration(acc);
-      return;
-    }
-  
-  return;
-  
+Perso::~Perso()
+{
+  delete m_graphicComponent;
+  //delete m_physicComponent;
+  //delete m_systemComponent;
 }
