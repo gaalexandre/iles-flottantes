@@ -22,11 +22,12 @@ protected:
     
     virtual bool intersect(sf::Vector2f point);
     virtual bool intersect(sf::FloatRect rect);
-private:
-  const int* const* m_tilesKind;
-  int m_width;
-  int m_height;
-  int m_tileSize;
+    
+    
+    const int* const* m_tilesKind;
+    int m_width;
+    int m_height;
+    int m_tileSize;
     
     
 };

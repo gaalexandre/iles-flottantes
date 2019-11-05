@@ -11,13 +11,11 @@ PlayerPhysic::PlayerPhysic(sf::floatRect hitBox)
 {
     m_hitBox = hitBox;
     m_hitBox_tmp = hitBox;
-    
-    
 }
 
 
 
-void PlayerPhysic::update(sf::Time t) // bouge selon les accelaration.
+void PlayerPhysic::update(const sf::Time t) // bouge selon les accelaration.
 {
     m_hitBox_tmp = m_hitBox
     m_hitBox.left += m_accelerationX*( t.asSeconds());

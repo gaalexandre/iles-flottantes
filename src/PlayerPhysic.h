@@ -20,7 +20,7 @@ public:
     
     PlayerPhysic()
 
-    virtual void update(sf::Time t);
+    virtual void update(const sf::Time t);
     virtual void collide( PhysicComponent &other);
     void setAccelerationX(float);
     void setAccelerationY(float);
@@ -32,7 +32,6 @@ protected:
     virtual bool intersect(sf::Vector2f point);
     virtual bool intersect(sf::FloatRect rect);
     
-private:
     float sf::floatRect m_hitBox{0, 0, 0, 0};
     float sf::floatRect m_hitBox_tmp{0, 0, 0, 0};
     float m_accelerationX{0};
