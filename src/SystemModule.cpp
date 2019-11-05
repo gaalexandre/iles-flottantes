@@ -15,6 +15,8 @@ void SystemModule::manageEvent(sf::Event event)
     case sf::Keyboard::Key::Up :
       //Perso.saut(10);//Valeur de l'accélération à déterminer
       break;
+    default:
+      break;
     }
   
 }

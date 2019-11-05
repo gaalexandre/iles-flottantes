@@ -9,10 +9,10 @@ class Map : public GameComponent
 
  public:
   Map(std::string filename);
-  bool isSolid(float x, float y);
+  virtual ~Map();
   
  private:
-  
+  int* m_tilesKind{nullptr}; //il est là juste pour être delete dans le destructeur
   
 };
 

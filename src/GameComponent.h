@@ -12,6 +12,7 @@
 class GameComponent
 {
 public:
+  virtual ~GameComponent(){};
   void loadGraphicComponent(GraphicModule &graphicModule);
   void loadSystemComponent(SystemModule &systemModule);
   void loadPhysicComponent(PhysicModule &physicModule);

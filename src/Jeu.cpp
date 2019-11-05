@@ -1,10 +1,14 @@
 #include "Jeu.h"
 #include "Map.h"
-
+#include "Perso.h"
 int Jeu::gameLoop()
 {
+  m_window.setView(m_view);
   Map map("mapExemple");
+  Perso perso("persoExample");
+  perso.loadGraphicComponent(m_graphicModule);
   map.loadGraphicComponent(m_graphicModule);
+  
   while (m_window.isOpen())
   {
     eventLoop();
@@ -19,19 +23,21 @@ int Jeu::gameLoop()
 void Jeu::eventLoop()
 {
   while (m_window.pollEvent(m_event))
-  {
-    switch (m_event.type)
-	  {
-      case sf::Event::Closed:
-        m_window.close();
-        break;
+    {
+      switch (m_event.type)
+	{
+	case sf::Event::Closed:
+	  m_window.close();
+	  break;
 
-      case sf::Event::KeyPressed:
-        m_systemModule.manageEvent(m_event);
-        break;
-
-      default:
-	      break;
+	case sf::Event::KeyPressed:
+	  m_systemModule.manageEvent(m_event);
+	  break;
+	case sf::Event::Resized:
+	  
+	  break;
+	default:
+	  break;
 	}
-  }
+    }
 }
