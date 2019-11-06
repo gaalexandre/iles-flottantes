@@ -19,12 +19,12 @@ class PlayerPhysic : public
 public:
     
     PlayerPhysic()
-
+    
     virtual void update(const sf::Time t);
     virtual void collide( PhysicComponent &other);
-    void setAccelerationX(float);
-    void setAccelerationY(float);
-    void addAcceleration(float, float);
+    void setVitesseX(float);
+    void setVitesseY(float);
+    void addVitesse(float, float);
     
 
 protected:
@@ -34,8 +34,8 @@ protected:
     
     float sf::floatRect m_hitBox{0, 0, 0, 0};
     float sf::floatRect m_hitBox_tmp{0, 0, 0, 0};
-    float m_accelerationX{0};
-    float m_accelerationY{0};
+    float m_vitesseX{0};
+    float m_vitesseY{0};
     
     
 }
