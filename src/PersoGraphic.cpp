@@ -5,6 +5,7 @@ PersoGraphic::PersoGraphic(const std::string& textureFilename, const sf::Transfo
   m_texture.loadFromFile(textureFilename);
   m_sprite.setTexture(m_texture);
   m_sprite.setTextureRect(textureRect);
+    m_sprite.setPosition(0,0);
     
 }
 

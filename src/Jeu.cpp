@@ -15,6 +15,7 @@ int Jeu::gameLoop()
     
   map.loadGraphicComponent(m_graphicModule);
     map.loadPhysicComponent(m_physicModule);
+    
     sf::Clock timer;
     
   while (m_window.isOpen())

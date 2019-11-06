@@ -1,4 +1,5 @@
 #include "MapPhysic.h"
+#include <iostream>
 
 MapPhysic::MapPhysic(int height, int width, int tileSize, int const* const* const  tilesKind)
 {
