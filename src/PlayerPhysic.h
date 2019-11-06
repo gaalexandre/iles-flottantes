@@ -37,8 +37,11 @@ protected:
     float m_vitesseX{0};
     float m_vitesseY{0};
     
+<<<<<<< HEAD
     sf::Transform &m_transform;
     
+=======
+>>>>>>> 5e19ec8381b8dbb7ae6ac764d16c9c426ab36cba
     
 }
 

@@ -9,6 +9,7 @@ MapPhysic::MapPhysic(int height, int width, int tileSize, int const* const* cons
 }
 
 
+
 /*
 bool MapPhysic::isSolid(float x, float y){
     return (m_tilesKind[x][y]);
@@ -24,6 +25,7 @@ bool MapPhysic::isSolid(float x, float y){
     
 }
  */
+
 void MapPhysic::update(sf::Time t)
 {
     // Le MapPhysic n'est pas un component dynamique
@@ -71,4 +73,12 @@ bool MapPhysic::intersect(sf::FloatRect rect)
     }
     return false;
      
+<<<<<<< HEAD
+=======
+}
+
+MapPhysic::~MapPhysic()
+{
+
+>>>>>>> 5e19ec8381b8dbb7ae6ac764d16c9c426ab36cba
 }

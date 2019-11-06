@@ -8,9 +8,10 @@ class MapPhysic : public PhysicComponent
 {
 
 public:
-    
+
   MapPhysic(int height, int width, int tileSize, int const* const* const tilesKind);
-    ~MapPhysic();
+  virtual ~MapPhysic();
+
 
     virtual void update(sf::Time t);
     virtual void collide( PhysicComponent &other);

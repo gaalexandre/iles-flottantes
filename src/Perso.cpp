@@ -6,6 +6,8 @@
 
 Perso::Perso(std::string filename)
 {
+
+  m_transform.scale(sf::Vector2f(4.f,12.f));
   std::ifstream file(filename);
   std::string textureFilename;
   int x,L,y,l;
