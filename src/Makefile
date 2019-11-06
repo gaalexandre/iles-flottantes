@@ -21,10 +21,10 @@ $(CEXECNAME):$(COBJECT)
 	$(CC) $(CFLAGS) -o $@ $^ $(LIBSFML)
 
 $(OBJDIR):
-	mkdir $(OBJDIR)
+	mkdir -p $(OBJDIR)
 
 $(BINDIR):
-	mkdir $(BINDIR)
+	mkdir -p $(BINDIR)
 
 $(BINDIR)/%: $(RESDIR)/%
 	cp $< $@
