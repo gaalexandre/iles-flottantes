@@ -4,17 +4,17 @@
 
 bool SystemModule::addComponent(SystemComponent &component)
 {
-  return false;
+    m_components.push_front(&component);
+    
+  return true;
 }
 
 void SystemModule::manageEvent(sf::Event event)
 {
-  // Evènement liés au clavier
-  switch(event.key.code)
+    for(auto it = m_components.begin(); it != m_components.end(); it++)
     {
-    case sf::Keyboard::Key::Up :
-      //Perso.saut(10);//Valeur de l'accélération à déterminer
-      break;
+        (*it)->manageEvent(event);
+        
     }
   
 }

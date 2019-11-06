@@ -3,31 +3,32 @@
 
 #include <SFML/Graphics.hpp>
 #include "PhysicComponent.h"
-
+#include <SFML/System.hpp>
 class MapPhysic : public PhysicComponent
 {
 
 public:
-  MapPhysic(int height, int width, int tileSize, const int* const* tilesKind);
-    
-// sur quellles coordonnées (?), des float (?) 
-  bool isSolid(float x,float y);
 
-protected:
-    virtual void update();
+  MapPhysic(int height, int width, int tileSize, int const* const* const tilesKind);
+  virtual ~MapPhysic();
+
+
+    virtual void update(sf::Time t);
     virtual void collide( PhysicComponent &other);
+    
+protected:
+    
+    
     virtual bool intersect(sf::Vector2f point);
     virtual bool intersect(sf::FloatRect rect);
-private:
-  const int* const* m_tilesKind;
-  int m_width;
-  int m_height;
-  int m_tileSize;
+    
+    
+    const int* const* m_tilesKind;
+    int m_width;
+    int m_height;
+    int m_tileSize;
     
     
 };
-
-
-
 
 #endif

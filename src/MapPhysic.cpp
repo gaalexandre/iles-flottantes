@@ -1,12 +1,14 @@
 #include "MapPhysic.h"
 
-MapPhysic::MapPhysic(int height, int width, int tileSize, const int* const* tilesKind)
+MapPhysic::MapPhysic(int height, int width, int tileSize, int const* const* const  tilesKind)
 {
     m_tilesKind = tilesKind;
     m_width = width;
     m_height = height;
     m_tileSize = tileSize;
 }
+
+
 
 /*
 bool MapPhysic::isSolid(float x, float y){
@@ -16,13 +18,25 @@ bool MapPhysic::isSolid(float x, float y){
  
 */
 
-void MapPhysic::update()
+/*
+~MapPhysic::MapPhysic()
 {
+    for(int )
+    
+}
+ */
+
+void MapPhysic::update(sf::Time t)
+{
+    // Le MapPhysic n'est pas un component dynamique
     return;
 }
 
 void MapPhysic::collide( PhysicComponent &other)
 {
+    // Le Map physic n'est pas un component qui va devoir se modifier face à une
+    // collision
+    
     return;
 }
 
@@ -59,4 +73,10 @@ bool MapPhysic::intersect(sf::FloatRect rect)
     }
     return false;
      
+
+}
+
+MapPhysic::~MapPhysic()
+{
+    
 }
