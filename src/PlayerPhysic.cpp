@@ -24,6 +24,8 @@ void PlayerPhysic::update(const sf::Time t) // bouge selon les accelaration.
     m_hitBox.left += m_vitesseX*( t.asSeconds());
     m_hitBox.top += m_vitesseY*( t.asSeconds() );
     m_transform.translate(  m_vitesseX*( t.asSeconds()), m_vitesseY*( t.asSeconds()));
+    
+    m_transform.translate(0, 10*t.asSeconds());
                           
     return;
     
