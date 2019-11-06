@@ -24,7 +24,17 @@ void PlayerPhysic::update(const sf::Time t) // bouge selon les accelaration.
     m_transform.translate(  m_vitesseX*( t.asSeconds()), m_vitesseY*( t.asSeconds()));
     
     m_transform.translate(0, 10*t.asSeconds());
-                          
+    
+    if( m_hitBox.left != m_transform.transformPoint(0,0).x ||
+       m_hitBox.top != m_transform.transformPoint(0,0).y)
+    {
+        std::cout << "a\n";
+        std::cout << m_hitBox.left << std::endl;
+        std::cout << m_transform.transformPoint(0,0).x << std::endl;
+        std::cout << m_hitBox.top << std::endl;
+        std::cout << m_transform.transformPoint(0,0).y << std::endl;
+        std::cout << "b\n";
+    }
     return;
     
 }
@@ -34,9 +44,7 @@ void PlayerPhysic::collide(PhysicComponent &other)
     //algorithme (?)
     if(other.intersect(m_hitBox))  // ne marche pas bien
     {
-        std::cout << "hello \n";
-        std::cout << m_hitBox.left- m_hitBox_tmp.left << std::endl;
-        std::cout << m_hitBox.top - m_hitBox_tmp.top << std::endl;
+        
         m_transform.translate(m_hitBox.left- m_hitBox_tmp.left, m_hitBox.top - m_hitBox_tmp.top);
         m_hitBox = m_hitBox_tmp;
         
