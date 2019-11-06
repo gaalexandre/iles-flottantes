@@ -37,14 +37,6 @@ Map::Map(std::string filename)
   }
   m_graphicComponent = new MapGraphic(textureFilename, height, width, tileSize, tilesNumber);
   m_physicComponent = new MapPhysic(height, width, tileSize, m_tilesKind);
-<<<<<<< HEAD
-    
-
-  delete[] tilesKinds;
-  delete[] tilesNumber;
-}
-=======
->>>>>>> 5e19ec8381b8dbb7ae6ac764d16c9c426ab36cba
 
   delete[] tilesKinds;
   delete[] tilesNumber;

@@ -73,12 +73,10 @@ bool MapPhysic::intersect(sf::FloatRect rect)
     }
     return false;
      
-<<<<<<< HEAD
-=======
+
 }
 
 MapPhysic::~MapPhysic()
 {
-
->>>>>>> 5e19ec8381b8dbb7ae6ac764d16c9c426ab36cba
+    
 }

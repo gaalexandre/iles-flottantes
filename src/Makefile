@@ -7,11 +7,9 @@ CC=g++
 CFLAGS=-Wall -Wextra -std=c++17
 EXECNAME=sfml-app
 LIBSFML=-lsfml-graphics -lsfml-window -lsfml-system
-<<<<<<< HEAD
-OBJECT=main.o Jeu.o GraphicModule.o PhysicModule.o SystemModule.o Map.o MapGraphic.o MapPhysic.o GameComponent.o Perso.o PersoGraphic.o
-=======
-OBJECT=main.o Jeu.o GraphicModule.o PhysicModule.o SystemModule.o Map.o MapGraphic.o PhysicComponent.o MapPhysic.o GameComponent.o Perso.o PersoGraphic.o
->>>>>>> 5e19ec8381b8dbb7ae6ac764d16c9c426ab36cba
+
+OBJECT=main.o Jeu.o GraphicModule.o PhysicModule.o SystemModule.o Map.o MapGraphic.o PhysicComponent.o MapPhysic.o GameComponent.o Perso.o PersoGraphic.o PlayerPhysic.o PersoSystem.o MapPhysic.o 
+
 RESOURCES=$(shell ls $(RESDIR))
 COBJECT=$(addprefix $(OBJDIR)/, $(OBJECT))
 CEXECNAME=$(addprefix $(BINDIR)/, $(EXECNAME))
@@ -25,10 +23,10 @@ $(CEXECNAME):$(COBJECT)
 	$(CC) $(CFLAGS) -o $@ $^ $(LIBSFML)
 
 $(OBJDIR):
-	mkdir $(OBJDIR)
+	mkdir -p $(OBJDIR)
 
 $(BINDIR):
-	mkdir $(BINDIR)
+	mkdir -p $(BINDIR) -p
 
 $(BINDIR)/%: $(RESDIR)/%
 	cp $< $@
