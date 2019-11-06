@@ -40,7 +40,7 @@ void Jeu::eventLoop()
 	  break;
 
 	case sf::Event::KeyPressed:
-            std::cout << " hello 3 \n";
+           
 	  m_systemModule.manageEvent(m_event);
 	  break;
 	case sf::Event::Resized:
