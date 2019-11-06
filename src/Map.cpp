@@ -21,22 +21,29 @@ Map::Map(std::string filename)
     textureDescription >> tilesKinds[i];
 
   int *tilesNumber = new int[height*width];
-  int **tilesKind = new int*[width];
+    
+  m_tilesKind = new int*[width];
   for(int i(0);i<width;++i)
   {
-      tilesKind[i] = new int[height];
+      m_tilesKind[i] = new int[height];
     for(int j(0);j<height;++j)
     {
       mapFile >> tilesNumber[(i + j * width)];
-        tilesKind[i][j] = tilesNumber[(i + j * width)];
+        m_tilesKind[i][j] = tilesKinds[tilesNumber[(i + j * width)]];
     }
   }
   m_graphicComponent = new MapGraphic(textureFilename, height, width, tileSize, tilesNumber);
-  m_physicComponent = new MapPhysic(height, width, tileSize, tilesKind);
+  m_physicComponent = new MapPhysic(height, width, tileSize, m_tilesKind);
     
+
+  delete[] tilesKinds;
+  delete[] tilesNumber;
 }
 
 
-bool Map::isSolid(float x,float y){
-    return false;
+Map::~Map()
+{
+  delete m_graphicComponent;
+  delete m_physicComponent;
+  delete[] m_tilesKind;
 }

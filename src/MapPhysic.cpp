@@ -8,6 +8,7 @@ MapPhysic::MapPhysic(int height, int width, int tileSize, int const* const* cons
     m_tileSize = tileSize;
 }
 
+
 /*
 bool MapPhysic::isSolid(float x, float y){
     return (m_tilesKind[x][y]);

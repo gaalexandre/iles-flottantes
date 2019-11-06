@@ -7,7 +7,7 @@
 
 #include "PlayerPhysic.h"
 
-PlayerPhysic::PlayerPhysic(sf::floatRect hitBox)
+PlayerPhysic::PlayerPhysic(sf::Transform &t, sf::FloatRect hitBox) : m_transform(t)
 {
     m_hitBox = hitBox;
     m_hitBox_tmp = hitBox;

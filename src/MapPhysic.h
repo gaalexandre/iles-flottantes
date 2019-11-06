@@ -8,11 +8,9 @@ class MapPhysic : public PhysicComponent
 {
 
 public:
+    
   MapPhysic(int height, int width, int tileSize, int const* const* const tilesKind);
     ~MapPhysic();
-    
-// sur quellles coordonnées (?), des float (?) 
-  bool isSolid(float x,float y);
 
     virtual void update(sf::Time t);
     virtual void collide( PhysicComponent &other);
@@ -31,8 +29,5 @@ protected:
     
     
 };
-
-
-
 
 #endif

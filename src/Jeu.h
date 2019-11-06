@@ -16,7 +16,6 @@ class Jeu
   
  private:
   void eventLoop();
-  bool createComponent(GameComponent component);
   
   sf::RenderWindow m_window{sf::VideoMode(200, 200), "SFML works!"};
   sf::Event m_event;
@@ -25,6 +24,6 @@ class Jeu
   PhysicModule m_physicModule;
   SystemModule m_systemModule;
 };
-
+  
 
 #endif

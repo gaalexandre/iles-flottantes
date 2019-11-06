@@ -1,12 +1,14 @@
 #include "Jeu.h"
 #include "Map.h"
-
+#include "Perso.h"
 int Jeu::gameLoop()
 {
   Map map("mapExemple");
+  Perso perso("persoExample");
+  perso.loadGraphicComponent(m_graphicModule);
   map.loadGraphicComponent(m_graphicModule);
-    sf::Clock timer;
     
+    sf::Clock timer;
   while (m_window.isOpen())
   {
     eventLoop();
