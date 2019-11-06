@@ -16,6 +16,7 @@ Perso::Perso(std::string filename)
   int x,L,y,l;
   file >> textureFilename >> x >> y >> L >> l;
   sf::IntRect textureRect(x,y,L,l);
+    m_transform.scale(5,2);
   m_graphicComponent =new PersoGraphic(textureFilename, &m_transform, textureRect);
   
     PlayerPhysic* t = new PlayerPhysic(&m_transform);
