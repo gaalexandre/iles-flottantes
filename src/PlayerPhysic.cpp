@@ -45,6 +45,7 @@ void PlayerPhysic::collide(PhysicComponent &other)
 {
     //algorithme (?)
     m_surLeSol = false;
+    
     if(other.intersect(m_hitBox))  // ne marche pas bien
     {
         
@@ -52,7 +53,11 @@ void PlayerPhysic::collide(PhysicComponent &other)
         m_hitBox.left -= 4.f*m_transfX;
         if(other.intersect(m_hitBox))
         {
-            m_surLeSol=true;
+            if(m_transfY>0)
+            {
+                m_surLeSol=true;
+            }
+            
             m_transform.translate(m_transfX, 0);
             m_hitBox.left += 4.f*m_transfX;
             
