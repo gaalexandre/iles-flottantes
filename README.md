@@ -1,4 +1,4 @@
-Pipo Inutile Mais Agile
+
 
 
 Il s'agit d'un jeu de plateformes simple qui se base sur un système de pouvoir du personnage qui change durant un niveau basée sur les quatres éléments (feu, vent, eau, terre).

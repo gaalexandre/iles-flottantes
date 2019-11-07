@@ -3,23 +3,19 @@
 
 #include <forward_list>
 #include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
 
 class PhysicComponent
 {
-    public:
-        float getAbs ();
-        float getOrd ();
-        void setAcceleration(float acc);
-        virtual bool isSolid(float x, float y) = 0;
-    protected:
-        sf::FloatRect m_hitbox;
-        bool m_gravity;
-        bool m_solid;
-        float m_abs;
-        float m_ord;
-        float m_acc;
-  
 
+public:
+  virtual ~PhysicComponent(){};
+  virtual void update(sf::Time) = 0;
+  virtual void collide( PhysicComponent &other) = 0;
+  virtual bool intersect( sf::Vector2f point) = 0;
+  virtual bool intersect(sf::FloatRect rectangle) = 0;
+
+protected:
   
 };
 
