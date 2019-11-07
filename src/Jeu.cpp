@@ -21,6 +21,8 @@ int Jeu::gameLoop()
   while (m_window.isOpen())
   {
     eventLoop();
+    m_systemModule.manageEvent(m_event);
+      
     m_physicModule.update( timer.restart() );
     
     m_window.clear(sf::Color::Black);
@@ -34,6 +36,7 @@ void Jeu::eventLoop()
 {
   while (m_window.pollEvent(m_event))
     {
+        
       switch (m_event.type)
 	{
 	case sf::Event::Closed:
@@ -42,13 +45,12 @@ void Jeu::eventLoop()
 
 	case sf::Event::KeyPressed:
            
-	  m_systemModule.manageEvent(m_event);
 	  break;
 	case sf::Event::Resized:
 	  
 	  break;
 	default:
-             m_systemModule.manageEvent(m_event);
+            
 	  break;
 	}
     }

@@ -29,6 +29,7 @@ PersoSystem::PersoSystem (PlayerPhysic *physicComponent)
          m_physicComponent.setVitesseX(0);
      }
      
+     /*
      if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
      {
          
@@ -44,6 +45,17 @@ PersoSystem::PersoSystem (PlayerPhysic *physicComponent)
      {
          m_physicComponent.setVitesseY(0);
      }
+     */
+     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+     {
+         
+         m_physicComponent.saut();
+     }
+     
+     
+     
+     
+     
      
      /*
     // Evènement liés au clavier

@@ -26,8 +26,12 @@ public:
     void setVitesseY(float);
     void addVitesse(float, float);
     
+    void saut();
+    
+    
 
 protected:
+    
 
     virtual bool intersect(sf::Vector2f point);
     virtual bool intersect(sf::FloatRect rect);
@@ -41,7 +45,7 @@ protected:
     float m_vitesseX{0};
     float m_vitesseY{0};
     
-    bool onGround{false};
+    bool m_surLeSol{false};
     
     
     sf::Transform &m_transform;
