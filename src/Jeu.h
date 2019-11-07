@@ -16,15 +16,14 @@ class Jeu
   
  private:
   void eventLoop();
-  bool createComponent(GameComponent component);
   
-  sf::RenderWindow m_window{sf::VideoMode(200, 200), "SFML works!"};
+  sf::RenderWindow m_window{sf::VideoMode(800, 800), "Ile flotante!"};
   sf::Event m_event;
-  
+  sf::View m_view{sf::FloatRect(0.f, 0.f, 8*256.f, 8*256.f)};
   GraphicModule m_graphicModule;
   PhysicModule m_physicModule;
   SystemModule m_systemModule;
 };
-
+  
 
 #endif

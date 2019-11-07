@@ -13,6 +13,6 @@ void GameComponent::loadSystemComponent(SystemModule &systemModule)
 }
 void GameComponent::loadPhysicComponent(PhysicModule &physicModule)
 {
-  if(m_systemComponent!=nullptr)
+  if(m_physicComponent!=nullptr)
     physicModule.addComponent(*m_physicComponent);
 }
