@@ -10,16 +10,15 @@
 Perso::Perso(std::string filename)
 {
     
-  m_transform.scale(sf::Vector2f(4.f,12.f));
+  m_transform.scale(sf::Vector2f(4.f,4.f));
   std::ifstream file(filename);
   std::string textureFilename;
   int x,L,y,l;
   file >> textureFilename >> x >> y >> L >> l;
   sf::IntRect textureRect(x,y,L,l);
-    m_transform.scale(5,2);
   m_graphicComponent =new PersoGraphic(textureFilename, &m_transform, textureRect);
   
-    PlayerPhysic* t = new PlayerPhysic(&m_transform);
+    PlayerPhysic* t = new PlayerPhysic(&m_transform,0,0,L,l);
     m_physicComponent = t;
     m_systemComponent = new PersoSystem(t);
     
@@ -36,3 +35,5 @@ Perso::~Perso()
   //delete m_physicComponent;
   //delete m_systemComponent;
 }
+
+
