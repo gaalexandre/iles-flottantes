@@ -62,8 +62,6 @@
 *Quels sont les évènements qui vont peut être impacter l'itération? Répertoriez ici les évènements que vous anticipez comme ayant un impact potentiel pour l'itération (absences, changement de cap, difficultés, etc.).*
 > daily meetings
 
-En tant que joueur je veux afin de
-
 ### Titre des User Stories reportées
 
 *Lister ici les éléments des itérations précédentes qui ont été reportés à l'itération suivante. Ces éléments ont dû être revus et corrigés par le PO.*
@@ -73,7 +71,17 @@ En tant que joueur je veux afin de
 ### Titre des nouvelles User Stories
 
 *Lister ici les nouveaux éléments pour l'itération suivante. Ces éléments ont dû être revus et corrigés par le PO.*
-> Répondre ici
+> En tant que joueur je veux pouvoir utiliser une manette pour pouvoir contrôler mon personnage
+> En tant que joueur je veux pouvoir modifier les paramètres graphiques du jeu afin de pouvoir l'adapter à la configuration de mon ordinateur et de pouvoir profiter du jeu dans les meilleures conditions possibles
+> En tant que joueur je veux pouvoir modifier les touches du jeu dans un menu afin de pouvoir choisir les commandes que je souhaite
+> En tant que joueur je veux pouvoir profiter d'un affichage tête haute afin de pouvoir voir rapidement certaines informations sur l'état de la partie
+> En tant que joueur je veux que les ennemis puissent se déplacer afin de pouvoir avoir un meilleur gameplay
+> En tant que joueur je veux avoir des pièges qui peuvent me tuer afin de pouvoir mourir et d'avoir plus de difficulté
+> En tant que joueur je veux qu'il y ait des ennemis dans le jeu afin qu'il y ait un meilleur gameplay et une plus grande difficulté
+> En tant que joueur je veux un menu pour pouvoir lancer une partie
+> En tant que joueur je veux pouvoir ressusciter après ma mort afin de pouvoir rejouer
+> En tant que joueur je veux atteindre une case pour terminer le niveau
+> en tant que joueur je voudrais avoir un bel environnement pour ce jeu vidéo afin d'avoir plus d'immersion
 
 ## Confiance
 
@@ -83,7 +91,7 @@ En tant que joueur je veux afin de
 
 |           | :(    | :&#124;   | :)    | :D    |
 |:--------: |:----: |:----:     |:----: |:----: |
-| Equipe 7  |  *0*  |  *0*      |  *0*  |  *0*  |
+| Equipe 7  |  *2*  |  *1*      |  *3*  |  *0*  |
 
 ### Taux de confiance de l'équipe pour la réalisation du projet
 
@@ -91,4 +99,4 @@ En tant que joueur je veux afin de
 
 |           | :(    | :&#124;   | :)    | :D    |
 |:--------: |:----: |:----:     |:----: |:----: |
-| Equipe 7  |  *0*  |  *0*      |  *0*  |  *0*  |
+| Equipe 7  |  *1*  |  *3*      |  *2*  |  *0*  |
