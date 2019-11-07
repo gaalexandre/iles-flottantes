@@ -33,12 +33,15 @@ protected:
     virtual bool intersect(sf::FloatRect rect);
     
      sf::FloatRect m_hitBox;
-     sf::FloatRect m_hitBox_tmp;
+    
+    float m_transfX{0};
+    float m_transfY{0};
     
     
     float m_vitesseX{0};
     float m_vitesseY{0};
     
+    bool onGround{false};
     
     
     sf::Transform &m_transform;

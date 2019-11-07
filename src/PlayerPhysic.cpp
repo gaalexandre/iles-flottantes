@@ -9,7 +9,7 @@
 #include <iostream>
 
 PlayerPhysic::PlayerPhysic(sf::Transform *t,float x, float y, float width, float height)
-:  m_hitBox(x,y, width, height), m_hitBox_tmp(x,y, width, height),m_transform (*t)
+:  m_hitBox(x,y, 4.f*width, 4.f*height),m_transform (*t)
 {
    
 }
@@ -18,23 +18,16 @@ PlayerPhysic::PlayerPhysic(sf::Transform *t,float x, float y, float width, float
 
 void PlayerPhysic::update(const sf::Time t) // bouge selon les accelaration.
 {
-    m_hitBox_tmp = m_hitBox;
-    m_hitBox.left += m_vitesseX*( t.asSeconds());
-    m_hitBox.top += m_vitesseY*( t.asSeconds() )+10*t.asSeconds();
-    m_transform.translate(  m_vitesseX*( t.asSeconds()), m_vitesseY*( t.asSeconds()));
     
-    m_transform.translate(0, 10*t.asSeconds());
+    m_hitBox.left += 4.f*m_vitesseX*( t.asSeconds());
+    m_hitBox.top += 4.f*(m_vitesseY*( t.asSeconds() )+10*t.asSeconds());
+    m_transform.translate(  m_vitesseX*( t.asSeconds()), m_vitesseY*( t.asSeconds())+10*t.asSeconds());
+    m_transfX =m_vitesseX*( t.asSeconds());
+    m_transfY =m_vitesseY*( t.asSeconds())+10*t.asSeconds();
     
-    if( m_hitBox.left != m_transform.transformPoint(0,0).x ||
-       m_hitBox.top != m_transform.transformPoint(0,0).y)
-    {
-        std::cout << "a\n";
-        std::cout << m_hitBox.left << std::endl;
-        std::cout << m_transform.transformPoint(0,0).x << std::endl;
-        std::cout << m_hitBox.top << std::endl;
-        std::cout << m_transform.transformPoint(0,0).y << std::endl;
-        std::cout << "b\n";
-    }
+    
+    
+    
     return;
     
 }
@@ -45,8 +38,33 @@ void PlayerPhysic::collide(PhysicComponent &other)
     if(other.intersect(m_hitBox))  // ne marche pas bien
     {
         
-        m_transform.translate(m_hitBox.left- m_hitBox_tmp.left, m_hitBox.top - m_hitBox_tmp.top);
-        m_hitBox = m_hitBox_tmp;
+        m_transform.translate( -1*m_transfX, 0);
+        m_hitBox.left -= 4.f*m_transfX;
+        if(other.intersect(m_hitBox))
+        {
+            m_transform.translate(m_transfX, 0);
+            m_hitBox.left += 4.f*m_transfX;
+            
+            m_transform.translate(0, -1*m_transfY);
+            m_hitBox.top -= 4.f*m_transfY;
+            if(other.intersect(m_hitBox))
+            {
+                m_transform.translate( -1*m_transfX, 0);
+                m_hitBox.left -= 4.f*m_transfX;
+                return;
+            }
+            else{
+                return;
+            }
+            
+        }
+        
+        else{
+            return;
+        }
+        
+        
+     
         
     }
     return;

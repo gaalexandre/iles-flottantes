@@ -48,7 +48,7 @@ bool MapPhysic::intersect(sf::Vector2f point)
     {
         for(int j = 0;j<m_height;j++)
         {
-            if(m_tilesKind[i][j] == 1 && i*m_tileSize==point.x && j*m_tileSize==point.y)
+            if(m_tilesKind[i][j] == 0 && i*m_tileSize==point.x && j*m_tileSize==point.y)
             {
                 return  true;
             }
@@ -62,13 +62,21 @@ bool MapPhysic::intersect(sf::Vector2f point)
 bool MapPhysic::intersect(sf::FloatRect rect)
 {
     
+    sf::FloatRect Tile(0,0,m_tileSize,m_tileSize);
     for(int i=0;i<m_width;i++)
     {
         for(int j = 0;j<m_height;j++)
         {
-            if(m_tilesKind[i][j] == 1 && rect.contains(i*m_tileSize, j*m_tileSize))
+            if(m_tilesKind[j][i] == 0)
             {
-                return  true;
+                
+                Tile.left=i*m_tileSize;
+                Tile.top=j*m_tileSize;
+               
+                if(rect.intersects(Tile))
+                {
+                    return  true;
+                }
             }
         }
     }
