@@ -19,16 +19,12 @@ PlayerPhysic::PlayerPhysic(sf::Transform *t,float x, float y, float width, float
 void PlayerPhysic::update(const sf::Time t) // bouge selon les accelaration.
 {
     
-    
+    addVitesse(0,50*t.asSeconds());
     
     //gestion de la gravité
-    if(m_vitesseY<=400) // vitesse limite
+    if(m_vitesseY>400) // vitesse limite
     {
-        addVitesse(0,50*t.asSeconds());
-    }
-    else
-    {
-        m_vitesseY=100;
+        m_vitesseY=400;
     }
     
     
