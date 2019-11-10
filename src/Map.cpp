@@ -36,9 +36,7 @@ Map::Map(std::string filename)
     {
       mapFile >> tilesNumber[(i + j * width)];
       m_tilesKind[i][j] = tilesNumber[(i + j * width)];
-      std::cout << tilesNumber[(i + j * width)] << " ";
     }
-    std::cout << "\n";
   }
   m_graphicComponent = new MapGraphic(textureFilename, height, width, tileSize, tilesNumber);
   m_physicComponent = new MapPhysic(height, width, tileSize, m_tilesKind);
