@@ -28,11 +28,14 @@ Map::Map(std::string filename)
   for(int i(0);i<width;++i)
   {
     m_tilesKind[i] = new int[height];
-    for(int j(0);j<height;++j)
+  }
+
+  for(int j(0);j<height;++j)
+  {
+    for(int i(0);i<width;++i)
     {
-      mapFile >> tilesNumber[(j + i * height)];
-      m_tilesKind[i][j] = tilesNumber[(j + i * height)];
-        
+      mapFile >> tilesNumber[(i + j * width)];
+      m_tilesKind[i][j] = tilesNumber[(i + j * width)];
     }
   }
   m_graphicComponent = new MapGraphic(textureFilename, height, width, tileSize, tilesNumber);
