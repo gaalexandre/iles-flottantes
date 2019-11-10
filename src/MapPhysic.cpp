@@ -67,7 +67,7 @@ bool MapPhysic::intersect(sf::FloatRect rect)
     {
         for(int j = 0;j<m_height;j++)
         {
-            if(m_tilesKind[i][j] == 0)
+            if(m_tilesKind[j][i] == 0)
             {
                 
                 Tile.left=i*m_tileSize;

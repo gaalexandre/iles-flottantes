@@ -47,9 +47,6 @@ void Jeu::eventLoop()
            
 	  break;
 	case sf::Event::Resized:
-    m_view.setSize(m_event.size.width, m_event.size.height);
-    m_view.zoom(2);
-    m_window.setView(m_view);
 	  
 	  break;
 	default:
