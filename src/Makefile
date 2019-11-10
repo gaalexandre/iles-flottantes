@@ -22,7 +22,7 @@ SRCS=$(SRC_DIR)/*.cpp
 HDRS=$(SRC_DIR)/*.h
 OBJECT=$(shell ls *.cpp | sed s/\.cpp/.o/)
 
-all: $(OBJ_DIR) $(BIN_DIR) $(CEXECNAME) $(addprefix $(BIN_DIR)/, $(RESOURCES))
+all: $(OBJ_DIR) $(BIN_DIR) $(CEXECNAME) $(addprefix $(BIN_DIR)/, $(RESOURCES)) .depend
 
 $(CEXECNAME):$(COBJECT)
 	$(CC) $(CFLAGS) -o $@ $^ $(LIBSFML)
