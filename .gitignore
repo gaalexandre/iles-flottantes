@@ -8,3 +8,4 @@ sfml-app
 .vs/**
 *.sln
 *.vcxproj*
+.DS_Store
