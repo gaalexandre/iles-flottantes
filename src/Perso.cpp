@@ -23,7 +23,7 @@ Perso::Perso(std::string filename)
     
     
     
-    PlayerPhysic* t = new PlayerPhysic(&m_transform,0,0,L,l,&m_persoEtat);
+    PlayerPhysic* t = new PlayerPhysic(&m_transform,0,0,L,l,4.f,&m_persoEtat);
     m_physicComponent = t;
     m_systemComponent = new PersoSystem(&m_persoEtat);
     

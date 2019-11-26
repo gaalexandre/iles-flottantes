@@ -9,8 +9,8 @@
 #include "Perso.h"
 #include <iostream>
 
-PlayerPhysic::PlayerPhysic(sf::Transform *t,float x, float y, float width, float height, PersoEtatSystem* persoEtat)
-:  m_hitBox(x,y, 4.f*width, 4.f*height),m_transform (*t), m_persoEtat(*persoEtat)
+PlayerPhysic::PlayerPhysic(sf::Transform *t,float x, float y, float width, float height, float scale, PersoEtatSystem* persoEtat)
+:  m_hitBox(x,y, scale*width, scale*height),m_transform (*t), m_persoEtat(*persoEtat), m_scale(scale)
 {
    
 }
@@ -53,8 +53,8 @@ void PlayerPhysic::update(const sf::Time t) // bouge selon les accelaration.
     
     //deplacement :
     
-    m_hitBox.left += 4.f*m_vitesseX*( t.asSeconds());
-    m_hitBox.top += 4.f*(m_vitesseY*( t.asSeconds() )+10*t.asSeconds());
+    m_hitBox.left += m_scale*m_vitesseX*( t.asSeconds());
+    m_hitBox.top += m_scale*(m_vitesseY*( t.asSeconds() )+10*t.asSeconds());
     m_transform.translate(  m_vitesseX*( t.asSeconds()), m_vitesseY*( t.asSeconds())+10*t.asSeconds());
     m_transfX =m_vitesseX*( t.asSeconds());
     m_transfY =m_vitesseY*( t.asSeconds())+10*t.asSeconds();
@@ -82,7 +82,7 @@ void PlayerPhysic::collide(PhysicComponent &other)
             
         case Collision :
                 m_transform.translate( -1*m_transfX, 0);
-                m_hitBox.left -= 4.f*m_transfX;
+                m_hitBox.left -= m_scale*m_transfX;
                 if(other.intersect(m_hitBox))
                 {
                     if(m_transfY>0)
@@ -91,15 +91,15 @@ void PlayerPhysic::collide(PhysicComponent &other)
                     }
                     
                     m_transform.translate(m_transfX, 0);
-                    m_hitBox.left += 4.f*m_transfX;
+                    m_hitBox.left += m_scale*m_transfX;
                     
                     m_transform.translate(0, -1*m_transfY);
-                    m_hitBox.top -= 4.f*m_transfY;
+                    m_hitBox.top -= m_scale*m_transfY;
                     
                     if(other.intersect(m_hitBox))
                     {
                         m_transform.translate( -1*m_transfX, 0);
-                        m_hitBox.left -= 4.f*m_transfX;
+                        m_hitBox.left -= m_scale*m_transfX;
                         setVitesseY(0);
                         setVitesseX(0);
                         return;
@@ -176,7 +176,7 @@ void PlayerPhysic::saut()
 void PlayerPhysic::resetCoord()
 {
     m_transform.combine(m_transform.getInverse());
-    m_transform.scale(4.f, 4.f);
+    m_transform.scale(m_scale, m_scale);
     m_hitBox.left = 0;
     m_hitBox.top = 0;
     setVitesseX(0);

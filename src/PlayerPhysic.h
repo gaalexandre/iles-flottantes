@@ -21,7 +21,7 @@ class PlayerPhysic : public PhysicComponent
 public:
     
     PlayerPhysic(sf::Transform *m_transform,float x,
-                 float y, float width, float height, PersoEtatSystem*);
+                 float y, float width, float height,float, PersoEtatSystem*);
     
     virtual void update(const sf::Time t);
     virtual void collide( PhysicComponent &other);
@@ -61,6 +61,7 @@ protected:
     PersoEtatSystem& m_persoEtat;
     
     
+    float m_scale{0};
     
 
     
