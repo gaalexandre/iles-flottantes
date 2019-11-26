@@ -6,7 +6,8 @@
 
 int Jeu::gameLoop()
 {
-    m_window.setView(m_view);
+   
+    //m_window.setView(m_view);
     Map map("mapExemple");
     Perso perso("persoExample");
     perso.loadGraphicComponent(m_graphicModule);
@@ -15,6 +16,7 @@ int Jeu::gameLoop()
     
     map.loadGraphicComponent(m_graphicModule);
     map.loadPhysicComponent(m_physicModule);
+    
     
     sf::Clock timer;
     

@@ -92,6 +92,7 @@ typeCollision MapPhysic::intersect(sf::FloatRect rect)
                             }
                             break;
                         case 3 :
+                            // verifier si la moitié (?)
                             if(retour<=CollisionFinNiveau)
                             {
                                 retour = CollisionFinNiveau;

@@ -9,6 +9,7 @@ struct PersoEtatSystem
     
     bool contactMortel = false;
     bool contactFinNiveau = false;
+    bool surLeSol = false;
     
     
     bool saut = false;
