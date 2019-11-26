@@ -7,11 +7,11 @@
 Map::Map(std::string filename) 
 {
   std::ifstream mapFile(filename);
-  std::string textureDescriptionFilename, textureFilename;
-  int height, width, tileSize;
-  mapFile >> textureDescriptionFilename >> textureFilename >> height >> width >> tileSize;
+  std::string textureDescriptionFilename, textureFilename, backgroundFilename;
+  int height, width, tileSize, worldType;
+  mapFile >> textureDescriptionFilename >> textureFilename >> backgroundFilename >> height >> width >> tileSize >> worldType;
 
-  std::ifstream textureDescription(filename);
+  std::ifstream textureDescription(textureDescriptionFilename);
   int nbTile;
   textureDescription >> nbTile;
     std::cout << nbTile << std::endl;
@@ -26,19 +26,21 @@ Map::Map(std::string filename)
   m_tilesKind = new int*[width];
 
   for(int i(0);i<width;++i)
-  {
     m_tilesKind[i] = new int[height];
-  }
+  
 
   for(int j(0);j<height;++j)
   {
     for(int i(0);i<width;++i)
     {
       mapFile >> tilesNumber[(i + j * width)];
-      m_tilesKind[i][j] = tilesNumber[(i + j * width)];
+      m_tilesKind[i][j] = tilesKinds[tilesNumber[(i + j * width)]];
+
+      //std::cout << m_tilesKind[i][j] << "";
     }
+    //std::cout << "\n";
   }
-  m_graphicComponent = new MapGraphic(textureFilename, height, width, tileSize, tilesNumber);
+  m_graphicComponent = new MapGraphic(textureFilename, backgroundFilename, height, width, tileSize, tilesNumber, worldType);
   m_physicComponent = new MapPhysic(height, width, tileSize, m_tilesKind);
 
   delete[] tilesKinds;
