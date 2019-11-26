@@ -25,7 +25,7 @@ void PlayerPhysic::update(const sf::Time t) // bouge selon les accelaration.
     //gestion de la gravité
     if(m_vitesseY>450) // vitesse limite
     {
-        m_vitesseY=500;
+        m_vitesseY=450;
     }
     
     
