@@ -42,66 +42,83 @@ void PlayerPhysic::collide(PhysicComponent &other)
     //algorithme (?)
     m_surLeSol = false;
     
-    if(other.intersect(m_hitBox))  // ne marche pas bien
+    
+    
+    
+    //gerer les collisions particulières :
+    switch(other.intersect(m_hitBox))
     {
-        
-        m_transform.translate( -1*m_transfX, 0);
-        m_hitBox.left -= 4.f*m_transfX;
-        if(other.intersect(m_hitBox))
-        {
-            if(m_transfY>0)
-            {
-                m_surLeSol=true;
-            }
+        case CollisionMortel:
+            m_transform.combine(m_transform.getInverse());
+            m_transform.scale(4.f, 4.f);
+            m_hitBox.left = 0;
+            m_hitBox.top = 0;
+            setVitesseX(0);
+            setVitesseY(0);
+            break;
+        case CollisionFinNiveau :
+            break;
             
-            m_transform.translate(m_transfX, 0);
-            m_hitBox.left += 4.f*m_transfX;
-            
-            m_transform.translate(0, -1*m_transfY);
-            m_hitBox.top -= 4.f*m_transfY;
-            if(other.intersect(m_hitBox))
-            {
+        case Collision :
                 m_transform.translate( -1*m_transfX, 0);
                 m_hitBox.left -= 4.f*m_transfX;
-                setVitesseY(0);
-                setVitesseX(0);
-                return;
-            }
-            else
-            {
-                setVitesseY(0);
-                return;
-            }
+                if(other.intersect(m_hitBox))
+                {
+                    if(m_transfY>0)
+                    {
+                        m_surLeSol=true;
+                    }
+                    
+                    m_transform.translate(m_transfX, 0);
+                    m_hitBox.left += 4.f*m_transfX;
+                    
+                    m_transform.translate(0, -1*m_transfY);
+                    m_hitBox.top -= 4.f*m_transfY;
+                    
+                    if(other.intersect(m_hitBox))
+                    {
+                        m_transform.translate( -1*m_transfX, 0);
+                        m_hitBox.left -= 4.f*m_transfX;
+                        setVitesseY(0);
+                        setVitesseX(0);
+                        return;
+                    }
+                    else
+                    {
+                        setVitesseY(0);
+                        return;
+                    }
+                    
+                }
+                else
+                {
+                    setVitesseX(0);
+                    return;
+                }
             
-        }
-        
-        
-        else
-        {
-            setVitesseX(0);
-            return;
-        }
-        
-        
-     
-        
+            break;
+        case AucuneCollision:
+            
+            break;
     }
+    
+    
     return;
 }
 
 
-bool PlayerPhysic::intersect(sf::Vector2f point)
+typeCollision PlayerPhysic::intersect(sf::Vector2f point)
 {
     
-    return m_hitBox.contains(point);
+    return (m_hitBox.contains(point)) ? Collision : AucuneCollision;
             
 
 }
 
-bool PlayerPhysic::intersect(sf::FloatRect rect)
+typeCollision PlayerPhysic::intersect(sf::FloatRect rect)
 {
     
-    return rect.intersects(m_hitBox);
+    return (rect.intersects(m_hitBox)) ? Collision : AucuneCollision;
        
 }
 

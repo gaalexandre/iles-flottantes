@@ -7,6 +7,7 @@ MapPhysic::MapPhysic(int height, int width, int tileSize, int const* const* cons
     m_width = width;
     m_height = height;
     m_tileSize = tileSize;
+    
 }
 
 
@@ -41,7 +42,7 @@ void MapPhysic::collide( PhysicComponent &other)
     return;
 }
 
-bool MapPhysic::intersect(sf::Vector2f point)
+typeCollision MapPhysic::intersect(sf::Vector2f point)
 {
     
     for(int i=0;i<m_width;i++)
@@ -50,24 +51,24 @@ bool MapPhysic::intersect(sf::Vector2f point)
         {
             if(m_tilesKind[i][j] == 0 && i*m_tileSize==point.x && j*m_tileSize==point.y)
             {
-                return  true;
+                return  Collision;
             }
         }
     }
      
-    return false;
+    return AucuneCollision;
     
 }
 
-bool MapPhysic::intersect(sf::FloatRect rect)
+typeCollision MapPhysic::intersect(sf::FloatRect rect)
 {
-    
+    typeCollision retour = AucuneCollision;
     sf::FloatRect Tile(0,0,m_tileSize,m_tileSize);
     for(int i=0;i<m_width;i++)
     {
         for(int j = 0;j<m_height;j++)
         {
-            if(m_tilesKind[i][j] == 0)
+            if(m_tilesKind[i][j] != 1)
             {
                 
                 Tile.left=i*m_tileSize;
@@ -75,12 +76,37 @@ bool MapPhysic::intersect(sf::FloatRect rect)
                
                 if(rect.intersects(Tile))
                 {
-                    return  true;
+                    switch(m_tilesKind[i][j])
+                    {
+                        case 0 :
+                            if(retour<=Collision)
+                            {
+                                retour = Collision;
+                            }
+                            break;
+                        case 2 :
+                            
+                            if(retour<=CollisionMortel)
+                            {
+                                retour = CollisionMortel;
+                            }
+                            break;
+                        case 3 :
+                            if(retour<=CollisionFinNiveau)
+                            {
+                                retour = CollisionFinNiveau;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                    
+                
                 }
             }
         }
     }
-    return false;
+    return retour;
      
 
 }

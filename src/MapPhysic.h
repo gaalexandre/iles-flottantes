@@ -4,6 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include "PhysicComponent.h"
 #include <SFML/System.hpp>
+
+
 class MapPhysic : public PhysicComponent
 {
 
@@ -19,8 +21,8 @@ public:
 protected:
     
     
-    virtual bool intersect(sf::Vector2f point);
-    virtual bool intersect(sf::FloatRect rect);
+    virtual typeCollision intersect(sf::Vector2f point);
+    virtual typeCollision intersect(sf::FloatRect rect);
     
     
     const int* const* m_tilesKind;

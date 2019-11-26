@@ -33,8 +33,8 @@ public:
 protected:
     
 
-    virtual bool intersect(sf::Vector2f point);
-    virtual bool intersect(sf::FloatRect rect);
+    virtual typeCollision intersect(sf::Vector2f point);
+    virtual typeCollision intersect(sf::FloatRect rect);
     
      sf::FloatRect m_hitBox;
     
