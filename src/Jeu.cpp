@@ -8,6 +8,8 @@ int Jeu::gameLoop()
 {
    
     //m_window.setView(m_view);
+    
+    // on charge toutes les map ? 
     Map map("mapExemple");
     Perso perso("persoExample");
     perso.loadGraphicComponent(m_graphicModule);

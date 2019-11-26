@@ -34,7 +34,7 @@ $(BIN_DIR):
 	mkdir -p $(BIN_DIR)
 
 $(BIN_DIR)/%: $(RES_DIR)/%
-	cp $< $@
+	cp -r  $< $@
 
 .depend: $(SRCS) $(HDRS)
 	rm -f .depend; \

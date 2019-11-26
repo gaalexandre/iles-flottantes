@@ -14,7 +14,7 @@ PersoSystem::PersoSystem (PersoEtatSystem *persoEtat)
     
     for(int i = 0; i < 2;i++)
     {
-    if(!m_soundBuffers[listeSon[i]].loadFromFile(listeSon[i]+".wav"))
+    if(!m_soundBuffers[listeSon[i]].loadFromFile("./audio/"+listeSon[i]+".wav"))
     {
         std::cout << " Erreur de chargement de son" << std::endl;
         // lancer une exception ?
