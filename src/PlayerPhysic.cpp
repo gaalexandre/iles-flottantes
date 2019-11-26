@@ -6,10 +6,11 @@
 //
 
 #include "PlayerPhysic.h"
+#include "Perso.h"
 #include <iostream>
 
-PlayerPhysic::PlayerPhysic(sf::Transform *t,float x, float y, float width, float height)
-:  m_hitBox(x,y, 4.f*width, 4.f*height),m_transform (*t)
+PlayerPhysic::PlayerPhysic(sf::Transform *t,float x, float y, float width, float height, PersoEtatSystem* persoEtat)
+:  m_hitBox(x,y, 4.f*width, 4.f*height),m_transform (*t), m_persoEtat(*persoEtat)
 {
    
 }
@@ -27,6 +28,30 @@ void PlayerPhysic::update(const sf::Time t) // bouge selon les accelaration.
         m_vitesseY=500;
     }
     
+    
+    //gestion des déplacements du system
+    setVitesseX(m_persoEtat.deplacementX*100);
+    
+    
+    
+    //gestion du saut
+    if(m_persoEtat.saut)
+    {
+        saut();
+    }
+    
+    // reinitialisation des coordonnées si demandé.
+    if(m_persoEtat.resetCoord)
+            resetCoord();
+    
+    
+    
+    
+    
+    
+    
+    
+    //deplacement :
     
     m_hitBox.left += 4.f*m_vitesseX*( t.asSeconds());
     m_hitBox.top += 4.f*(m_vitesseY*( t.asSeconds() )+10*t.asSeconds());
@@ -49,20 +74,10 @@ void PlayerPhysic::collide(PhysicComponent &other)
     switch(other.intersect(m_hitBox))
     {
         case CollisionMortel:
-            m_transform.combine(m_transform.getInverse());
-            m_transform.scale(4.f, 4.f);
-            m_hitBox.left = 0;
-            m_hitBox.top = 0;
-            setVitesseX(0);
-            setVitesseY(0);
+            m_persoEtat.contactMortel = true;
             break;
         case CollisionFinNiveau :
-            m_transform.combine(m_transform.getInverse());
-            m_transform.scale(4.f, 4.f);
-            m_hitBox.left = 0;
-            m_hitBox.top = 0;
-            setVitesseX(0);
-            setVitesseY(0);
+            m_persoEtat.contactFinNiveau = true;
             break;
             
         case Collision :
@@ -155,4 +170,17 @@ void PlayerPhysic::saut()
         setVitesseY(-180);
         m_surLeSol=false;
     }
+    m_persoEtat.saut = false;
+}
+
+void PlayerPhysic::resetCoord()
+{
+    m_transform.combine(m_transform.getInverse());
+    m_transform.scale(4.f, 4.f);
+    m_hitBox.left = 0;
+    m_hitBox.top = 0;
+    setVitesseX(0);
+    setVitesseY(0);
+    
+    m_persoEtat.resetCoord = false;
 }

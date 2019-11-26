@@ -11,6 +11,7 @@
 #include <SFML/Graphics.hpp>
 #include "PhysicComponent.h"
 #include "SystemComponent.h"
+#include "Perso.h"
 #include <SFML/System.hpp>
 
 #include <stdio.h>
@@ -20,7 +21,7 @@ class PlayerPhysic : public PhysicComponent
 public:
     
     PlayerPhysic(sf::Transform *m_transform,float x,
-                 float y, float width, float height);
+                 float y, float width, float height, PersoEtatSystem*);
     
     virtual void update(const sf::Time t);
     virtual void collide( PhysicComponent &other);
@@ -34,12 +35,15 @@ public:
     bool estEnColiisionFinNiveau();
     
     
+    
 
 protected:
     
 
     virtual typeCollision intersect(sf::Vector2f point);
     virtual typeCollision intersect(sf::FloatRect rect);
+    
+    void resetCoord();
     
      sf::FloatRect m_hitBox;
     
@@ -54,6 +58,8 @@ protected:
     
     
     sf::Transform &m_transform;
+    PersoEtatSystem& m_persoEtat;
+    
     
     
 

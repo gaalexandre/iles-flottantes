@@ -4,6 +4,23 @@
 #include <string>
 #include "GameComponent.h"
 
+struct PersoEtatSystem
+{
+    
+    bool contactMortel = false;
+    bool contactFinNiveau = false;
+    
+    
+    bool saut = false;
+    bool resetCoord = false;
+    short int deplacementX = 0;
+    short int deplacementY = 0;
+};
+
+
+
+
+
 class Perso : public GameComponent
 {
 public:
@@ -14,6 +31,7 @@ public:
  
 private:
   sf::Transform m_transform;
+    PersoEtatSystem m_persoEtat;
   
 };
 
