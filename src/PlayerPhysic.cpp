@@ -19,12 +19,12 @@ PlayerPhysic::PlayerPhysic(sf::Transform *t,float x, float y, float width, float
 void PlayerPhysic::update(const sf::Time t) // bouge selon les accelaration.
 {
     
-    addVitesse(0,50*t.asSeconds());
+    addVitesse(0,180*t.asSeconds());
     
     //gestion de la gravité
-    if(m_vitesseY>400) // vitesse limite
+    if(m_vitesseY>450) // vitesse limite
     {
-        m_vitesseY=400;
+        m_vitesseY=500;
     }
     
     
@@ -33,10 +33,6 @@ void PlayerPhysic::update(const sf::Time t) // bouge selon les accelaration.
     m_transform.translate(  m_vitesseX*( t.asSeconds()), m_vitesseY*( t.asSeconds())+10*t.asSeconds());
     m_transfX =m_vitesseX*( t.asSeconds());
     m_transfY =m_vitesseY*( t.asSeconds())+10*t.asSeconds();
-    
-    
-    
-    
     return;
     
 }
@@ -67,18 +63,22 @@ void PlayerPhysic::collide(PhysicComponent &other)
             {
                 m_transform.translate( -1*m_transfX, 0);
                 m_hitBox.left -= 4.f*m_transfX;
-                
+                setVitesseY(0);
+                setVitesseX(0);
                 return;
             }
-            
-            else{
-                
+            else
+            {
+                setVitesseY(0);
                 return;
             }
             
         }
         
-        else{
+        
+        else
+        {
+            setVitesseX(0);
             return;
         }
         
@@ -129,7 +129,7 @@ void PlayerPhysic::saut()
 {
     if(m_surLeSol)
     {
-        setVitesseY(-100);
+        setVitesseY(-180);
         m_surLeSol=false;
     }
 }
