@@ -57,6 +57,12 @@ void PlayerPhysic::collide(PhysicComponent &other)
             setVitesseY(0);
             break;
         case CollisionFinNiveau :
+            m_transform.combine(m_transform.getInverse());
+            m_transform.scale(4.f, 4.f);
+            m_hitBox.left = 0;
+            m_hitBox.top = 0;
+            setVitesseX(0);
+            setVitesseY(0);
             break;
             
         case Collision :

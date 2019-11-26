@@ -1,5 +1,5 @@
 tiles_spritesheet.png
-3
+4
 
 0   void                6
     0   grass               1
@@ -117,5 +117,24 @@ tiles_spritesheet.png
     5   stone               1
         0   stoneObstacle      504  0    70    70     2   2       2       2
 
+
+3   finNiveau            6
+    0   grass               1
+        0   grassfinNiveau      288  360  70  70        2   2       2       2
+
+    1   castle              1
+        0   castlefinNiveau     288  360  70  70        2   2       2       2
+
+    2   dirt                1
+        0   dirtfinNiveau        288  360  70  70        2   2       2       2
+
+    3   sand                1
+        0   sandfinNiveau        288  360  70  70        2   2       2       2
+
+    4   snow                1
+        0   snowfinNiveau        288  360  70  70        2   2       2       2
+
+    5   stone               1
+        0   stonefinNiveau      288  360  70  70         2   2       2       2
 
         id  name		    	x	y	width	height	up	right	down	left
