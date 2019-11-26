@@ -8,6 +8,7 @@ class Perso : public GameComponent
 {
 public:
   Perso(std::string filename);
+
   virtual ~Perso();
     
  

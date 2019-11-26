@@ -10,6 +10,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "PhysicComponent.h"
+#include "SystemComponent.h"
 #include <SFML/System.hpp>
 
 #include <stdio.h>
@@ -18,7 +19,8 @@ class PlayerPhysic : public PhysicComponent
 {
 public:
     
-    PlayerPhysic(sf::Transform *m_transform,float x, float y, float width, float height);
+    PlayerPhysic(sf::Transform *m_transform,float x,
+                 float y, float width, float height);
     
     virtual void update(const sf::Time t);
     virtual void collide( PhysicComponent &other);
@@ -27,6 +29,9 @@ public:
     void addVitesse(float, float);
     
     void saut();
+    
+    bool estEncollisionObstacle();
+    bool estEnColiisionFinNiveau();
     
     
 
@@ -49,6 +54,8 @@ protected:
     
     
     sf::Transform &m_transform;
+    
+    
 
     
 };
