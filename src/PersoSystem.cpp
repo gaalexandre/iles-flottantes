@@ -3,8 +3,8 @@
 #include <iostream>
 
 
-PersoSystem::PersoSystem (PlayerPhysic *physicComponent)
-: m_physicComponent(*physicComponent)
+PersoSystem::PersoSystem (PersoEtatSystem *persoEtat)
+: m_persoEtat(*persoEtat)
 {
     
     
@@ -13,20 +13,40 @@ PersoSystem::PersoSystem (PlayerPhysic *physicComponent)
 
  void PersoSystem::manageEvent (sf::Event event){
     
+     
+     // gerer les états detecté par le physique :
+     if(m_persoEtat.contactMortel)
+     {
+         m_persoEtat.contactMortel = false;
+         std::cout << " Mort ! " << std::endl;
+         m_persoEtat.resetCoord = true;
+     }
+     if(m_persoEtat.contactFinNiveau)
+     {
+         m_persoEtat.contactFinNiveau = false;
+         std::cout << " Fin du niveau ! " << std::endl;
+         m_persoEtat.resetCoord = true; // a replacer par un changement de niveau 
+     }
+     
+     
+     
+     
+     
+     
+     
+     // gerer l'entrée clavier :
      if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
      {
-         
-         m_physicComponent.setVitesseX(-100);
+         m_persoEtat.deplacementX = -1;
      }
      else if
          (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
      {
-         
-         m_physicComponent.setVitesseX(100);
+         m_persoEtat.deplacementX = 1;
      }
      else
      {
-         m_physicComponent.setVitesseX(0);
+         m_persoEtat.deplacementX = 0;
      }
      
      /*
@@ -49,7 +69,7 @@ PersoSystem::PersoSystem (PlayerPhysic *physicComponent)
      if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
      {
          
-         m_physicComponent.saut();
+         m_persoEtat.saut = true;
      }
      
      

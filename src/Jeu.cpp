@@ -6,14 +6,14 @@
 
 int Jeu::gameLoop()
 {
-  m_window.setView(m_view);
-  Map map("mapExemple");
-  Perso perso("persoExample");
-  perso.loadGraphicComponent(m_graphicModule);
+    m_window.setView(m_view);
+    Map map("mapExemple");
+    Perso perso("persoExample");
+    perso.loadGraphicComponent(m_graphicModule);
     perso.loadPhysicComponent(m_physicModule);
     perso.loadSystemComponent(m_systemModule);
     
-  map.loadGraphicComponent(m_graphicModule);
+    map.loadGraphicComponent(m_graphicModule);
     map.loadPhysicComponent(m_physicModule);
     
     sf::Clock timer;
@@ -31,6 +31,7 @@ int Jeu::gameLoop()
   }
   return 0;
 }
+
 
 void Jeu::eventLoop()
 {

@@ -15,12 +15,17 @@ Perso::Perso(std::string filename)
   std::string textureFilename;
   int x,L,y,l;
   file >> textureFilename >> x >> y >> L >> l;
+    
   sf::IntRect textureRect(x,y,L,l);
+    
   m_graphicComponent =new PersoGraphic(textureFilename, &m_transform, textureRect);
   
-    PlayerPhysic* t = new PlayerPhysic(&m_transform,0,0,L,l);
+    
+    
+    
+    PlayerPhysic* t = new PlayerPhysic(&m_transform,0,0,L,l,4.f,&m_persoEtat);
     m_physicComponent = t;
-    m_systemComponent = new PersoSystem(t);
+    m_systemComponent = new PersoSystem(&m_persoEtat);
     
     
     
@@ -34,6 +39,7 @@ Perso::~Perso()
   delete m_graphicComponent;
   //delete m_physicComponent;
   //delete m_systemComponent;
+   
 }
 
 
