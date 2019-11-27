@@ -3,22 +3,54 @@
 #include "Perso.h"
 
 #include <iostream>
+#include <fstream>
+#include <sstream>
 
+
+Jeu::~Jeu()
+{
+    for(int i = 0;i< m_listeMap.size();i++)
+    {
+        delete m_listeMap[i];
+    }
+}
 int Jeu::gameLoop()
 {
    
     //m_window.setView(m_view);
     
-    // on charge toutes les map ? 
-    Map map("mapExemple");
+    // on charge toutes les map ?
+    
+    std::ifstream mapFile("Map/descriptionMonde");
+    m_niveauMax = 0;
+    std::string fileName;
+    mapFile >> m_niveauMax >> fileName;
+    m_listeMap.resize(m_niveauMax);
+    for(int i = 0; i<m_niveauMax;i++)
+    {
+        std::ostringstream a;
+        a << (i+1);
+        //std::cout << "-->" << "Map/"+fileName+a.str()<< std::endl;
+        m_listeMap[i] = new Map("Map/"+fileName+a.str());
+    }
+    m_niveauEnCours = 0;
+    
+    
+    
+    
+    
+    
+   
     Perso perso("persoExample");
+    
+    
+    
     perso.loadGraphicComponent(m_graphicModule);
     perso.loadPhysicComponent(m_physicModule);
     perso.loadSystemComponent(m_systemModule);
     
-    map.loadGraphicComponent(m_graphicModule);
-    map.loadPhysicComponent(m_physicModule);
-    
+    m_listeMap[m_niveauEnCours]->loadGraphicComponent(m_graphicModule);
+    m_listeMap[m_niveauEnCours]->loadPhysicComponent(m_physicModule);
     
     sf::Clock timer;
     
@@ -61,5 +93,14 @@ void Jeu::eventLoop()
             
 	  break;
 	}
+    }
+}
+
+
+void Jeu::niveauSuivant()
+{
+    if(m_niveauEnCours<m_niveauMax-1)
+    {
+        //m_listeMap[m_niveauEnCours].unlo
     }
 }
