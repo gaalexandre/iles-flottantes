@@ -33,8 +33,8 @@ public:
 protected:
     
 
-    virtual typeCollision intersect(sf::Vector2f point);
-    virtual typeCollision intersect(sf::FloatRect rect);
+    virtual int intersect(sf::Vector2f point);
+    virtual int intersect(sf::FloatRect rect);
     
     void resetCoord();
     

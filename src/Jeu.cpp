@@ -42,8 +42,6 @@ int Jeu::gameLoop()
 
     m_window.clear(sf::Color::Black);
 
-      std::cout << " x : " << m_perso->getCoord().x << std::endl;
-      std::cout << " y : " << m_perso->getCoord().y << std::endl;
       m_view.setCenter(m_perso->getCoord());
       m_graphicModule.draw(m_window);
       
