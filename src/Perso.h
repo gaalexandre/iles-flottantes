@@ -27,6 +27,8 @@ class Perso : public GameComponent
 {
 public:
   Perso(std::string filename);
+    
+    bool possedeCle();
 
   virtual ~Perso();
     

@@ -19,6 +19,16 @@ int Jeu::gameLoop()
    
     //m_window.setView(m_view);
     
+    
+    // a deplacer dans le constructeur :
+    sf::Text HUDCle;
+    sf::Font font;
+    font.loadFromFile("sansation.ttf");
+    HUDCle.setFont(font);
+    HUDCle.setFillColor(sf::Color::Black);
+    HUDCle.setString("Cle !");
+    HUDCle.setCharacterSize(24);
+    
     // on charge toutes les map ?
     
     std::ifstream mapFile("Map/descriptionMonde");
@@ -63,6 +73,18 @@ int Jeu::gameLoop()
     
     m_window.clear(sf::Color::Black);
     m_graphicModule.draw(m_window);
+      
+    // dessiner l'HUD
+      m_window.setView(m_window.getDefaultView());
+      if(perso.possedeCle())
+      {
+      m_window.draw(HUDCle);
+      }
+      //m_window.setView(m_view);
+
+      
+      
+      
     m_window.display();
   }
   return 0;

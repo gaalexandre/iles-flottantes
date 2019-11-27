@@ -34,6 +34,12 @@ Perso::Perso(std::string filename)
   
 }
 
+
+bool Perso::possedeCle()
+{
+    
+    return m_persoEtat.cle;
+}
 Perso::~Perso()
 {
   delete m_graphicComponent;
