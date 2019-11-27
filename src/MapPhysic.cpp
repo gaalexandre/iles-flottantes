@@ -13,19 +13,19 @@ MapPhysic::MapPhysic(int height, int width, int tileSize, int const* const* cons
 
 
 /*
-bool MapPhysic::isSolid(float x, float y){
-    return (m_tilesKind[x][y]);
-//    (m_tilesKind[(int) ((x*m_width)+y)]) == 1);
-}
+ bool MapPhysic::isSolid(float x, float y){
+ return (m_tilesKind[x][y]);
+ //    (m_tilesKind[(int) ((x*m_width)+y)]) == 1);
+ }
  
-*/
+ */
 
 /*
-~MapPhysic::MapPhysic()
-{
-    for(int )
-    
-}
+ ~MapPhysic::MapPhysic()
+ {
+ for(int )
+ 
+ }
  */
 
 void MapPhysic::update(sf::Time t)
@@ -42,7 +42,7 @@ void MapPhysic::collide( PhysicComponent &other)
     return;
 }
 
-typeCollision MapPhysic::intersect(sf::Vector2f point)
+int MapPhysic::intersect(sf::Vector2f point) // a modifier
 {
     
     for(int i=0;i<m_width;i++)
@@ -55,14 +55,14 @@ typeCollision MapPhysic::intersect(sf::Vector2f point)
             }
         }
     }
-     
+    
     return AucuneCollision;
     
 }
 
-typeCollision MapPhysic::intersect(sf::FloatRect rect)
+int MapPhysic::intersect(sf::FloatRect rect)
 {
-    typeCollision retour = AucuneCollision;
+    int retour = AucuneCollision;
     sf::FloatRect Tile(0,0,m_tileSize,m_tileSize);
     for(int i=0;i<m_width;i++)
     {
@@ -73,60 +73,50 @@ typeCollision MapPhysic::intersect(sf::FloatRect rect)
                 
                 Tile.left=i*m_tileSize;
                 Tile.top=j*m_tileSize;
-               
+                
                 if(rect.intersects(Tile))
                 {
                     switch(m_tilesKind[i][j])
                     {
                         case 0 :
-                            if(retour<=Collision)
-                            {
-                                retour = Collision;
-                            }
+                            retour |= Collision;
                             break;
                         case 2 :
-                            
-                            if(retour<=CollisionMortel)
-                            {
-                                retour = CollisionMortel;
-                            }
+                            retour |= CollisionMortel;
                             break;
                         case 3 :
                             
                             if(Tile.contains(rect.left+rect.width/2,
-                                             rect.top+rect.height/2))
+                                             rect.top+0.8*rect.height))
                             {
-                                if(retour<=CollisionFinNiveau)
-                                {
-                                    retour = CollisionFinNiveau;
-                                }
+                                retour |= CollisionFinNiveau;
+                                std::cout << "fin\n";
                             }
                             break;
                         case 4 :
                             if(Tile.contains(rect.left+rect.width/2,
-                                             rect.top+rect.height/2))
+                                             rect.top+0.8*rect.height))
                             {
-                                if(retour<=CollisionCle)
-                                {
-                                    retour = CollisionCle;
-                                }
+                                std::cout << "cle\n";
+                                retour |= CollisionCle;
                             }
                             break;
                         default:
                             break;
                     }
                     
-                
+                    
                 }
             }
         }
     }
     return retour;
-     
-
+    
+    
 }
 
 MapPhysic::~MapPhysic()
 {
     
 }
+
