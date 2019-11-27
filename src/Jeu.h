@@ -10,11 +10,13 @@
 #include "Map.h"
 #include "Perso.h"
 
+#include "Map.h"
+#include <vector>
 class Jeu
 {
  public:
-  int gameLoop();
   ~Jeu();
+  int gameLoop();
  private:
   void eventLoop();
   void loadNextLevel();
@@ -28,6 +30,8 @@ class Jeu
 
   Perso *m_perso{nullptr};
   Map *m_map{nullptr};
+  int m_levelMax{0};
+
 };
 
 #endif

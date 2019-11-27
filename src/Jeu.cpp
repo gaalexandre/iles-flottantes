@@ -4,6 +4,13 @@
 #include <iostream>
 #include <fstream>
 
+Jeu::~Jeu()
+{
+    for(int i = 0;i< m_listeMap.size();i++)
+    {
+        delete m_listeMap[i];
+    }
+}
 int Jeu::gameLoop()
 {
   m_map=nullptr;
@@ -12,7 +19,23 @@ int Jeu::gameLoop()
 
   sf::Clock timer;
   loadNextLevel();
+  
+    //m_window.setView(m_view);
+    
+    
+    // a deplacer dans le constructeur :
+    sf::Text HUDCle;
+    sf::Text HUDVictoire;
+    sf::Text HUDMort;
+    sf::Font font;
+    font.loadFromFile("sansation.ttf");
+    HUDCle.setFont(font);
+    HUDMort.setFont(font);
+    HUDCle.setFillColor(sf::Color::Black);
+    HUDCle.setString("Cle !");
+    HUDCle.setCharacterSize(24);
 
+    sf::Clock timer;
   while (m_window.isOpen())
   {
     eventLoop();
@@ -23,9 +46,18 @@ int Jeu::gameLoop()
     m_window.clear(sf::Color::Black);
 
     m_graphicModule.draw(m_window);
-
-    m_window.display();
-    if(m_perso->hasFinishedLevel())
+      
+    // dessiner l'HUD
+      m_window.setView(m_window.getDefaultView());
+      if(perso.possedeCle())
+      {
+          m_window.draw(HUDCle);
+      }
+      //m_window.setView(m_view);
+      
+      // afficher la fenetre
+      m_window.display();
+      if(m_perso->hasFinishedLevel())
 	loadNextLevel();
   }
   return 0;
@@ -43,22 +75,25 @@ void Jeu::eventLoop()
   {
     switch (m_event.type)
     {
-    case sf::Event::Closed:
-      m_window.close();
-      break;
-      
-    case sf::Event::KeyPressed:
-      
-      break;
-    case sf::Event::Resized:
-      m_view.setSize(m_event.size.width, m_event.size.height);
-      m_view.zoom(2);
-      m_window.setView(m_view);
-      
-      break;
-    default:
-      
-      break;
+	switch (m_event.type)
+	{
+	  case sf::Event::Closed:
+	  m_window.close();
+	  break;
+
+	  case sf::Event::KeyPressed:
+           
+	  break;
+	  case sf::Event::Resized:
+	  m_view.setSize(m_event.size.width, m_event.size.height);
+	  //m_view.zoom(2);
+	  m_window.setView(m_view);
+	  
+	  break;
+	  default:
+            
+	  break;
+	}
     }
   }
 }
@@ -85,3 +120,4 @@ void Jeu::loadNextLevel()
   m_map->loadGraphicComponent(m_graphicModule);
   m_map->loadPhysicComponent(m_physicModule);
 }
+

@@ -7,6 +7,23 @@ PersoSystem::PersoSystem (PersoEtatSystem *persoEtat)
 : m_persoEtat(*persoEtat)
 {
     
+    //on charge les sons
+    
+    std::string listeSon[2] = {"saut", "victoire"};
+    // de taille 2
+    
+    for(int i = 0; i < 2;i++)
+    {
+    if(!m_soundBuffers[listeSon[i]].loadFromFile("./audio/"+listeSon[i]+".wav"))
+    {
+        std::cout << " Erreur de chargement de son" << std::endl;
+        // lancer une exception ?
+    }
+    m_sounds[listeSon[i]].setBuffer(m_soundBuffers[listeSon[i]]);
+    m_sounds[listeSon[i]].setVolume(50.f);
+    }
+ 
+  
     
 }
 
@@ -17,15 +34,20 @@ PersoSystem::PersoSystem (PersoEtatSystem *persoEtat)
      // gerer les états detecté par le physique :
      if(m_persoEtat.contactMortel)
      {
+         m_sounds["saut"].play();
          m_persoEtat.contactMortel = false;
          std::cout << " Mort ! " << std::endl;
          m_persoEtat.resetCoord = true;
+         m_persoEtat.cle = false;
      }
      if(m_persoEtat.contactFinNiveau)
      {
+         m_sounds["victoire"].play();
          m_persoEtat.contactFinNiveau = false;
          std::cout << " Fin du niveau ! " << std::endl;
          m_persoEtat.resetCoord = true; // a replacer par un changement de niveau 
+         m_persoEtat.cle = false;
+    
      }
      
      
@@ -68,8 +90,11 @@ PersoSystem::PersoSystem (PersoEtatSystem *persoEtat)
      */
      if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
      {
-         
+         if(m_persoEtat.surLeSol)
+         {
+         m_sounds["saut"].play();
          m_persoEtat.saut = true;
+         }
      }
      
      

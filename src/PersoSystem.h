@@ -11,6 +11,11 @@
 #include "Perso.h"
 #include "SystemComponent.h"
 #include <SFML/Window.hpp>
+#include <SFML/Audio.hpp>
+
+#include <map>
+#include <string>
+
 #include "PlayerPhysic.h"
 
 class PersoSystem : public SystemComponent
@@ -22,6 +27,10 @@ class PersoSystem : public SystemComponent
     
     private :
     PersoEtatSystem& m_persoEtat;
+    
+    std::map<std::string, sf::SoundBuffer> m_soundBuffers;
+    std::map<std::string, sf::Sound> m_sounds;
+    
     
     
 };

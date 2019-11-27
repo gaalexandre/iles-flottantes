@@ -47,7 +47,7 @@ protected:
     float m_vitesseX{0};
     float m_vitesseY{0};
     
-    bool m_surLeSol{false};
+   
     
     
     sf::Transform &m_transform;
