@@ -69,8 +69,8 @@ void Jeu::eventLoop()
     {
 	switch (m_event.type)
 	{
-	    switch (m_event.type)
-	    {
+    
+	    
 	    case sf::Event::Closed:
 		m_window.close();
 		break;
@@ -86,7 +86,7 @@ void Jeu::eventLoop()
 		break;
 	    default:
 		break;
-	    }
+	    
 	}
     }
 }
