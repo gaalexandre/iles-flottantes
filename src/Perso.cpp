@@ -19,7 +19,7 @@ Perso::Perso(std::string filename, double xBegin, double yBegin)
 
   m_graphicComponent =new PersoGraphic(textureFilename, &m_transform, textureRect);
 
-  PlayerPhysic* t = new PlayerPhysic(&m_transform,0,0,L,l,4.f,&m_persoEtat,xBegin,yBegin);
+  PlayerPhysic* t = new PlayerPhysic(&m_transform,0,0,L,l,1.f,&m_persoEtat,xBegin,yBegin);
 
   m_physicComponent = t;
   m_systemComponent = new PersoSystem(&m_persoEtat);

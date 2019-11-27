@@ -24,8 +24,8 @@ public:
   Perso(std::string filename, double xBegin, double yBegin);
   bool hasFinishedLevel();
     
-    bool possedeCle();
-    bool finNiveau();
+  bool possedeCle();
+  bool finNiveau();
   virtual ~Perso();
 
 private:

@@ -4,13 +4,6 @@
 #include <iostream>
 #include <fstream>
 
-Jeu::~Jeu()
-{
-    for(int i = 0;i< m_listeMap.size();i++)
-    {
-        delete m_listeMap[i];
-    }
-}
 int Jeu::gameLoop()
 {
   m_map=nullptr;
@@ -34,8 +27,7 @@ int Jeu::gameLoop()
     HUDCle.setFillColor(sf::Color::Black);
     HUDCle.setString("Cle !");
     HUDCle.setCharacterSize(24);
-
-    sf::Clock timer;
+    
   while (m_window.isOpen())
   {
     eventLoop();
@@ -49,7 +41,7 @@ int Jeu::gameLoop()
       
     // dessiner l'HUD
       m_window.setView(m_window.getDefaultView());
-      if(perso.possedeCle())
+      if(m_perso->possedeCle())
       {
           m_window.draw(HUDCle);
       }
@@ -71,41 +63,40 @@ Jeu::~Jeu()
 
 void Jeu::eventLoop()
 {
-  while (m_window.pollEvent(m_event))
-  {
-    switch (m_event.type)
+    while (m_window.pollEvent(m_event))
     {
 	switch (m_event.type)
 	{
-	  case sf::Event::Closed:
-	  m_window.close();
-	  break;
+	    switch (m_event.type)
+	    {
+	    case sf::Event::Closed:
+		m_window.close();
+		break;
 
-	  case sf::Event::KeyPressed:
+	    case sf::Event::KeyPressed:
            
-	  break;
-	  case sf::Event::Resized:
-	  m_view.setSize(m_event.size.width, m_event.size.height);
-	  //m_view.zoom(2);
-	  m_window.setView(m_view);
+		break;
+	    case sf::Event::Resized:
+		m_view.setSize(m_event.size.width, m_event.size.height);
+		//m_view.zoom(2);
+		m_window.setView(m_view);
 	  
-	  break;
-	  default:
-            
-	  break;
+		break;
+	    default:
+		break;
+	    }
 	}
     }
-  }
 }
 
 void Jeu::loadNextLevel()
 {
-  m_levelNumber++;
-  m_graphicModule.unload();
-  m_physicModule.unload();
-  m_systemModule.unload();
-  std::ifstream levelFile("level" + std::to_string(m_levelNumber));
-  std::string mapFileName, playerFilename;
+    m_levelNumber++;
+    m_graphicModule.unload();
+    m_physicModule.unload();
+    m_systemModule.unload();
+    std::ifstream levelFile("level" + std::to_string(m_levelNumber));
+    std::string mapFileName, playerFilename;
   double xBeginPlayer, yBeginPlayer;
   levelFile >> mapFileName >> playerFilename >>xBeginPlayer >>  yBeginPlayer;
   if(m_map)
