@@ -12,6 +12,7 @@ int Jeu::gameLoop()
 
   sf::Clock timer;
   loadNextLevel();
+
   while (m_window.isOpen())
   {
     eventLoop();
@@ -27,6 +28,7 @@ int Jeu::gameLoop()
   }
   return 0;
 }
+
 
 void Jeu::eventLoop()
 {
