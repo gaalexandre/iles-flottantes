@@ -7,25 +7,22 @@
 //#include "PersoPhysic.h"
 #include <fstream>
 
-Perso::Perso(std::string filename)
-{
-    
+Perso::Perso(std::string filename, double xBegin, double yBegin)
+{ 
   m_transform.scale(sf::Vector2f(1.f,1.f));
   std::ifstream file(filename);
   std::string textureFilename;
   int x,L,y,l;
   file >> textureFilename >> x >> y >> L >> l;
-    
+
   sf::IntRect textureRect(x,y,L,l);
-    
+
   m_graphicComponent =new PersoGraphic(textureFilename, &m_transform, textureRect);
-  
-    
-    
-    
-    PlayerPhysic* t = new PlayerPhysic(&m_transform,0,0,L,l,1.f,&m_persoEtat);
-    m_physicComponent = t;
-    m_systemComponent = new PersoSystem(&m_persoEtat);
+
+  PlayerPhysic* t = new PlayerPhysic(&m_transform,0,0,L,l,1.f,&m_persoEtat,xBegin,yBegin);
+
+  m_physicComponent = t;
+  m_systemComponent = new PersoSystem(&m_persoEtat);
     
     
     
@@ -47,9 +44,12 @@ bool Perso::finNiveau()
 Perso::~Perso()
 {
   delete m_graphicComponent;
-  //delete m_physicComponent;
-  //delete m_systemComponent;
+  delete m_physicComponent;
+  delete m_systemComponent;
    
 }
 
-
+bool Perso::hasFinishedLevel()
+{
+  return m_persoEtat.contactFinNiveau;
+}
