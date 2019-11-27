@@ -17,22 +17,41 @@ struct PersoEtatSystem
     short int deplacementY = 0;
 };
 
+enum states{
+  wait=0,
+  hurt=1,
+  jump=2,
+  walk=3
+};
+
+struct PersoAnimation
+{
+  sf::IntRect** sprites = new sf::IntRect*[4];
+  int frame = 0;
+  int* nbFrames = new int[4];
+  int* timeBetweenFrames = new int[4];
+  states state = walk;
+  int clock = 0;
+  int direction = 0;
+};
+
 
 
 
 
 class Perso : public GameComponent
 {
-public:
-  Perso(std::string filename);
+  public:
+    Perso(std::string filename);
 
-  virtual ~Perso();
-    
- 
-private:
-  sf::Transform m_transform;
-    PersoEtatSystem m_persoEtat;
+    virtual ~Perso();
+      
   
+  private:
+    sf::Transform m_transform;
+    PersoEtatSystem m_persoEtat;
+    PersoAnimation m_animation;
+    
 };
 
 #endif

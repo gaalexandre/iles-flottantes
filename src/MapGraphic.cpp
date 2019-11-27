@@ -34,11 +34,11 @@ MapGraphic::MapGraphic(const std::string& textureInfoFilename, const std::string
             textureInfo >> id >> name >> nbTextures;
             tileList[i][j] = new tile[nbTextures];
 
-            std::cout << name << " " << i << " " << j << "\n";
+            //std::cout << name << " " << i << " " << j << "\n";
 
             for (int k=0; k<nbTextures; ++k){
                 textureInfo >> tileA.id >> tileA.name >> tileA.x >> tileA.y >> tileA.width >> tileA.height >> tileA.up >> tileA.right >> tileA.down >> tileA.left;
-                std::cout << tileA.name << " " << i << " " << j << " " << k << "\n";
+                //std::cout << tileA.name << " " << i << " " << j << " " << k << "\n";
                 tileList[i][j][k] = tileA;
             }
         }
@@ -112,4 +112,10 @@ void MapGraphic::draw(sf::RenderTarget& target, sf::RenderStates states) const
     states.texture = &m_tileset;
 
     target.draw(m_vertices, states);
+}
+
+void MapGraphic::update(sf::Time t)
+{
+    // Le MapGraphic n'est pas un component dynamique
+    return;
 }

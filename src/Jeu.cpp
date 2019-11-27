@@ -8,7 +8,7 @@ int Jeu::gameLoop()
 {
     m_window.setView(m_view);
     Map map("mapExemple");
-    Perso perso("persoExample");
+    Perso perso("p1_spritesheet");
     perso.loadGraphicComponent(m_graphicModule);
     perso.loadPhysicComponent(m_physicModule);
     perso.loadSystemComponent(m_systemModule);
@@ -24,6 +24,7 @@ int Jeu::gameLoop()
     m_systemModule.manageEvent(m_event);
       
     m_physicModule.update( timer.restart() );
+    m_graphicModule.update( timer.restart() );
     
     m_window.clear(sf::Color::Black);
     m_graphicModule.draw(m_window);

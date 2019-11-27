@@ -3,8 +3,8 @@
 #include <iostream>
 
 
-PersoSystem::PersoSystem (PersoEtatSystem *persoEtat)
-: m_persoEtat(*persoEtat)
+PersoSystem::PersoSystem (PersoEtatSystem *persoEtat, PersoAnimation *animation)
+: m_persoEtat(*persoEtat), m_animation(*animation) 
 {
     
     

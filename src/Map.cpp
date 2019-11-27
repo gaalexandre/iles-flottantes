@@ -14,7 +14,7 @@ Map::Map(std::string filename)
   std::ifstream textureDescription(textureDescriptionFilename);
   int nbTile;
   textureDescription >> nbTile;
-    std::cout << nbTile << std::endl;
+    //std::cout << nbTile << std::endl;
   int *tilesKinds = new int[nbTile];
     
   for(int i(0);i<nbTile;++i)

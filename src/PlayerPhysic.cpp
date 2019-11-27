@@ -1,18 +1,11 @@
-//
-//  PlayerPhysic.cpp
-//  
-//
-//  Created by Lucas Bourel on 24/10/2019.
-//
-
 #include "PlayerPhysic.h"
 #include "Perso.h"
 #include <iostream>
 
-PlayerPhysic::PlayerPhysic(sf::Transform *t,float x, float y, float width, float height, float scale, PersoEtatSystem* persoEtat)
-:  m_hitBox(x,y, scale*width, scale*height),m_transform (*t), m_persoEtat(*persoEtat), m_scale(scale)
+PlayerPhysic::PlayerPhysic(sf::Transform *t,float x, float y, float width, float height, float scale, PersoEtatSystem* persoEtat, PersoAnimation *animation)
+:  m_hitBox(x,y, scale*width, scale*height),m_transform (*t), m_persoEtat(*persoEtat), m_scale(scale), m_animation{*animation}
 {
-   
+    
 }
 
 
@@ -31,18 +24,38 @@ void PlayerPhysic::update(const sf::Time t) // bouge selon les accelaration.
     
     //gestion des déplacements du system
     setVitesseX(m_persoEtat.deplacementX*100);
-    
-    
+
+    if(m_persoEtat.deplacementX)
+    {
+        m_animation.frame = m_animation.state == walk ? m_animation.frame : 0;
+        m_animation.state = walk;
+        m_animation.direction = m_persoEtat.deplacementX;
+    }
+    else
+    {
+        m_animation.frame = m_animation.state == wait ? m_animation.frame : 0;
+        m_animation.state = wait;
+    }
     
     //gestion du saut
     if(m_persoEtat.saut)
     {
         saut();
     }
-    
+
+    if(!m_surLeSol)
+    {
+        m_animation.frame = m_animation.state == jump ? m_animation.frame : 0;
+        m_animation.state = jump;
+    }
+
+    int step = (m_animation.clock + t.asMilliseconds()) / m_animation.timeBetweenFrames[m_animation.state];
+    m_animation.clock = (m_animation.clock + t.asMilliseconds()) % m_animation.timeBetweenFrames[m_animation.state];
+    m_animation.frame = (m_animation.frame+step)%m_animation.nbFrames[m_animation.state];
+   
     // reinitialisation des coordonnées si demandé.
     if(m_persoEtat.resetCoord)
-            resetCoord();
+        resetCoord();
     
     
     
