@@ -7,7 +7,7 @@
 int Jeu::gameLoop()
 {
 
-    m_view.zoom(2);
+    m_view.zoom(4);
     m_window.setView(m_view);
 
   m_map=nullptr;
