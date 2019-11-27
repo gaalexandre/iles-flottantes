@@ -7,7 +7,7 @@
 int Jeu::gameLoop()
 {
 
-    m_view.zoom(2);
+    m_view.zoom(4);
     m_window.setView(m_view);
 
   m_map=nullptr;
@@ -69,8 +69,8 @@ void Jeu::eventLoop()
     {
 	switch (m_event.type)
 	{
-	    switch (m_event.type)
-	    {
+    
+	    
 	    case sf::Event::Closed:
 		m_window.close();
 		break;
@@ -86,7 +86,7 @@ void Jeu::eventLoop()
 		break;
 	    default:
 		break;
-	    }
+	    
 	}
     }
 }
