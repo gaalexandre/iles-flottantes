@@ -43,17 +43,18 @@ int Jeu::gameLoop()
     m_graphicModule.draw(m_window);
       
     // dessiner l'HUD
-      m_window.setView(m_window.getDefaultView());
-      if(m_perso->possedeCle())
-      {
-          m_window.draw(HUDCle);
-      }
-      //m_window.setView(m_view);
-      
-      // afficher la fenetre
-      m_window.display();
-      if(m_perso->hasFinishedLevel())
-	loadNextLevel();
+    m_window.setView(m_window.getDefaultView());
+    if(m_perso->possedeCle())
+    {
+        m_window.draw(HUDCle);
+    }
+    //m_window.setView(m_view);
+    
+    // afficher la fenetre
+    m_window.display();
+    
+    if(m_perso->hasFinishedLevel())
+	    loadNextLevel();
   }
   return 0;
 }
