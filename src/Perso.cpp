@@ -8,7 +8,7 @@
 #include <fstream>
 #include <iostream>
 
-Perso::Perso(std::string filename)
+Perso::Perso(std::string filename, double xBegin, double yBegin)
 {
     
   m_transform.scale(sf::Vector2f(1.f,1.f));
@@ -38,7 +38,7 @@ Perso::Perso(std::string filename)
     
     
     
-  PlayerPhysic* t = new PlayerPhysic(&m_transform,0,0,L,l,1.f,&m_persoEtat, &m_animation);
+  PlayerPhysic* t = new PlayerPhysic(&m_transform,0,0,L,l,1.f,&m_persoEtat, &m_animation,xBegin,yBegin);
   m_physicComponent = t;
   m_systemComponent = new PersoSystem(&m_persoEtat, &m_animation);
     
@@ -49,6 +49,16 @@ Perso::Perso(std::string filename)
   
 }
 
+
+bool Perso::possedeCle()
+{
+    
+    return m_persoEtat.cle;
+}
+bool Perso::finNiveau()
+{
+    return m_persoEtat.contactFinNiveau;
+}
 Perso::~Perso()
 {
   delete m_graphicComponent;
@@ -57,4 +67,7 @@ Perso::~Perso()
    
 }
 
-
+bool Perso::hasFinishedLevel()
+{
+  return m_persoEtat.contactFinNiveau;
+}

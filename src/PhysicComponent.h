@@ -8,10 +8,12 @@
 
 enum typeCollision
 {
+    //l'ordre indique la priorité dans le retour lors d'une collision multiple
     AucuneCollision=0,
-    Collision=1,
+    CollisionCle=1,
     CollisionMortel=2,
-    CollisionFinNiveau=3
+    CollisionFinNiveau=3,
+    Collision = 4
 };
 
 

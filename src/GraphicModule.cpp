@@ -22,3 +22,7 @@ void GraphicModule::update(const sf::Time t)
     }
   
 }
+void GraphicModule::unload()
+{
+  m_components.clear();
+}

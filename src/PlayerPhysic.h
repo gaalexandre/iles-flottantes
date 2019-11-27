@@ -1,10 +1,3 @@
-//
-//  PlayerPhysic.hpp
-//  
-//
-//  Created by Lucas Bourel on 24/10/2019.
-//
-
 #ifndef PlayerPhysic_hpp
 #define PlayerPhysic_hpp
 
@@ -21,7 +14,7 @@ class PlayerPhysic : public PhysicComponent
 public:
     
     PlayerPhysic(sf::Transform *m_transform,float x,
-                 float y, float width, float height,float, PersoEtatSystem*, PersoAnimation *animation);
+                 float y, float width, float height,float, PersoEtatSystem*, PersoAnimation *animation, double xBegin, double yBegin);
     
     virtual void update(const sf::Time t);
     virtual void collide( PhysicComponent &other);
@@ -45,7 +38,7 @@ protected:
     
     void resetCoord();
     
-     sf::FloatRect m_hitBox;
+    sf::FloatRect m_hitBox;
     
     float m_transfX{0};
     float m_transfY{0};
@@ -54,7 +47,7 @@ protected:
     float m_vitesseX{0};
     float m_vitesseY{0};
     
-    bool m_surLeSol{false};
+   
     
     
     sf::Transform &m_transform;
@@ -65,6 +58,9 @@ protected:
     
     PersoAnimation &m_animation;
     
+    double m_xBegin;
+    double m_yBegin;
+
 };
 
 

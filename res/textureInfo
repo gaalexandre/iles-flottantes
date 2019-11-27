@@ -1,5 +1,5 @@
 tiles_spritesheet.png
-4
+5
 
 0   void                6
     0   grass               1
@@ -143,4 +143,25 @@ tiles_spritesheet.png
     5   stone               1
         0   stonefinNiveau      288 360 70      70      2   2       2       2
 
-        id  name		    	x	y	width	height	up	right	down	left
+
+
+4   lock           6
+    0   grass               1
+        0   grassLock      0 720 70 70        2   2       2       2
+
+    1   castle              1
+        0   castleLock     0 720 70 70        2   2       2       2
+
+    2   dirt                1
+        0   dirtLock        0 720 70 70         2   2       2       2
+
+    3   sand                1
+        0   sandLock       0 720 70 70        2   2       2       2
+
+    4   snow                1
+        0   snowLock        0 720 70 70        2   2       2       2
+
+    5   stone               1
+        0   stoneLock      0 720 70 70         2   2       2       2
+
+    id  name                x    y    width    height    up    right    down    left

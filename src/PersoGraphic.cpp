@@ -12,7 +12,7 @@ PersoGraphic::PersoGraphic(const std::string& textureFilename, const sf::Transfo
 }
 
 void PersoGraphic::draw(sf::RenderTarget& target, sf::RenderStates states) const
-{ 
+{
   states.texture = &m_texture;
   states.transform=m_transform;
   target.draw(m_sprite, states);
