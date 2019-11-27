@@ -109,7 +109,6 @@ typeCollision MapPhysic::intersect(sf::FloatRect rect)
                                 if(retour<=CollisionCle)
                                 {
                                     retour = CollisionCle;
-                                    
                                 }
                             }
                             break;
