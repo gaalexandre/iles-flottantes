@@ -8,7 +8,7 @@ struct PersoEtatSystem
 {
     
     bool contactMortel = false;
-    bool contactFinNiveau = false;
+    bool contactFinNiveau = true;
     bool surLeSol = false;
     
     bool cle = false;
@@ -18,11 +18,14 @@ struct PersoEtatSystem
     short int deplacementY = 0;
 };
 
+
 class Perso : public GameComponent
 {
 public:
   Perso(std::string filename, double xBegin, double yBegin);
   bool hasFinishedLevel();
+
+    sf::Vector2f getCoord();
     
   bool possedeCle();
   bool finNiveau();

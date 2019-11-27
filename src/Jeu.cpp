@@ -7,7 +7,7 @@
 int Jeu::gameLoop()
 {
 
-    m_view.zoom(4);
+    m_view.zoom(1.4f);
     m_window.setView(m_view);
 
   m_map=nullptr;
@@ -26,20 +26,27 @@ int Jeu::gameLoop()
     font.loadFromFile("sansation.ttf");
     HUDCle.setFont(font);
     HUDMort.setFont(font);
-    HUDCle.setFillColor(sf::Color::Black);
+    HUDCle.setFillColor(sf::Color::Red);
     HUDCle.setString("Cle !");
     HUDCle.setCharacterSize(24);
     
   while (m_window.isOpen())
   {
+     
     eventLoop();
+      
+      
     m_systemModule.manageEvent(m_event);
 
     m_physicModule.update( timer.restart() );
 
     m_window.clear(sf::Color::Black);
 
-    m_graphicModule.draw(m_window);
+      std::cout << " x : " << m_perso->getCoord().x << std::endl;
+      std::cout << " y : " << m_perso->getCoord().y << std::endl;
+      m_view.setCenter(m_perso->getCoord());
+      m_graphicModule.draw(m_window);
+      
       
     // dessiner l'HUD
       m_window.setView(m_window.getDefaultView());
@@ -47,12 +54,15 @@ int Jeu::gameLoop()
       {
           m_window.draw(HUDCle);
       }
-      //m_window.setView(m_view);
+      m_window.setView(m_view);
       
       // afficher la fenetre
-      m_window.display();
       if(m_perso->hasFinishedLevel())
-	loadNextLevel();
+          loadNextLevel();
+      
+      m_window.display();
+      
+      
   }
   return 0;
 }
@@ -80,7 +90,7 @@ void Jeu::eventLoop()
 		break;
 	    case sf::Event::Resized:
 		m_view.setSize(m_event.size.width, m_event.size.height);
-		//m_view.zoom(2);
+		m_view.zoom(1);
 		m_window.setView(m_view);
 	  
 		break;

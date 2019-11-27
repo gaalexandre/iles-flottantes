@@ -49,6 +49,11 @@ Perso::~Perso()
    
 }
 
+
+sf::Vector2f Perso::getCoord()
+{
+    return m_transform.transformPoint(0,0);
+}
 bool Perso::hasFinishedLevel()
 {
   return m_persoEtat.contactFinNiveau;
