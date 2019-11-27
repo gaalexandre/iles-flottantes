@@ -9,6 +9,7 @@ class GraphicModule
  public:
   void addComponent(GraphicComponent &component);
   void draw(sf::RenderWindow &window);
+  void unload();
  private:
     std::forward_list<GraphicComponent*> m_components;
     

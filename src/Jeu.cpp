@@ -1,6 +1,4 @@
 #include "Jeu.h"
-#include "Map.h"
-#include "Perso.h"
 
 #include <string>
 #include <iostream>
@@ -8,6 +6,8 @@
 
 int Jeu::gameLoop()
 {
+  m_map=nullptr;
+  m_perso=nullptr;
   m_window.setView(m_view);
 
   sf::Clock timer;
@@ -25,10 +25,17 @@ int Jeu::gameLoop()
     m_graphicModule.draw(m_window);
 
     m_window.display();
+    if(m_perso->hasFinishedLevel())
+	loadNextLevel();
   }
   return 0;
 }
 
+Jeu::~Jeu()
+{
+    delete m_map;
+    delete m_perso;
+}
 
 void Jeu::eventLoop()
 {
@@ -59,16 +66,22 @@ void Jeu::eventLoop()
 void Jeu::loadNextLevel()
 {
   m_levelNumber++;
+  m_graphicModule.unload();
+  m_physicModule.unload();
+  m_systemModule.unload();
   std::ifstream levelFile("level" + std::to_string(m_levelNumber));
   std::string mapFileName, playerFilename;
-  levelFile >> mapFileName >> playerFilename;
-
-  Map *map=new Map(mapFileName);
-  Perso *perso=new Perso(playerFilename);
-
-  perso->loadGraphicComponent(m_graphicModule);
-  perso->loadPhysicComponent(m_physicModule);
-  perso->loadSystemComponent(m_systemModule);
-  map->loadGraphicComponent(m_graphicModule);
-  map->loadPhysicComponent(m_physicModule);
+  double xBeginPlayer, yBeginPlayer;
+  levelFile >> mapFileName >> playerFilename >>xBeginPlayer >>  yBeginPlayer;
+  if(m_map)
+      delete m_map;
+  if(m_perso)
+      delete m_perso;
+  m_map=new Map(mapFileName);
+  m_perso=new Perso(playerFilename, xBeginPlayer, yBeginPlayer);
+  m_perso->loadGraphicComponent(m_graphicModule);
+  m_perso->loadPhysicComponent(m_physicModule);
+  m_perso->loadSystemComponent(m_systemModule);
+  m_map->loadGraphicComponent(m_graphicModule);
+  m_map->loadPhysicComponent(m_physicModule);
 }

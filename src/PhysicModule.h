@@ -7,7 +7,8 @@ class PhysicModule
 {
  public:
   bool addComponent(PhysicComponent &component);
-    void update(const sf::Time);
+  void update(const sf::Time);
+  void unload();
  private:
   std::forward_list<PhysicComponent*> m_components; 
 };

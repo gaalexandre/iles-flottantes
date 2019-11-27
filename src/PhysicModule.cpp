@@ -28,3 +28,8 @@ void PhysicModule::update(const sf::Time t)
     }
   
 }
+
+void PhysicModule::unload()
+{
+  m_components.clear();
+}
