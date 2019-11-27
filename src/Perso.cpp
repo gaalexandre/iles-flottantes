@@ -44,8 +44,8 @@ bool Perso::finNiveau()
 Perso::~Perso()
 {
   delete m_graphicComponent;
-  delete m_physicComponent;
-  delete m_systemComponent;
+  //delete m_physicComponent;
+  //delete m_systemComponent;
    
 }
 

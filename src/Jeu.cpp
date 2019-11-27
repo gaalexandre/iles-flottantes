@@ -6,14 +6,16 @@
 
 int Jeu::gameLoop()
 {
+
+    m_view.zoom(2);
+    m_window.setView(m_view);
+
   m_map=nullptr;
   m_perso=nullptr;
-  m_window.setView(m_view);
 
   sf::Clock timer;
   loadNextLevel();
   
-    //m_window.setView(m_view);
     
     
     // a deplacer dans le constructeur :
