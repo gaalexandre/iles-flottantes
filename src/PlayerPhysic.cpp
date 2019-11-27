@@ -9,13 +9,11 @@
 #include "Perso.h"
 #include <iostream>
 
-PlayerPhysic::PlayerPhysic(sf::Transform *t,float x, float y, float width, float height, float scale, PersoEtatSystem* persoEtat)
-:  m_hitBox(x,y, scale*width, scale*height),m_transform (*t), m_persoEtat(*persoEtat), m_scale(scale)
+PlayerPhysic::PlayerPhysic(sf::Transform *t,float x, float y, float width, float height, float scale, PersoEtatSystem* persoEtat, double xBegin, double yBegin)
+  :  m_hitBox(x,y, scale*width, scale*height),m_transform (*t), m_persoEtat(*persoEtat), m_scale(scale), m_xBegin(xBegin), m_yBegin(yBegin)
 {
-   
+  resetCoord();
 }
-
-
 
 void PlayerPhysic::update(const sf::Time t) // bouge selon les accelaration.
 {
@@ -33,15 +31,10 @@ void PlayerPhysic::update(const sf::Time t) // bouge selon les accelaration.
     }
     }
     
-    
     //gestion des déplacements du system
     setVitesseX(m_persoEtat.deplacementX*100);
     
-    std::cout << m_persoEtat.deplacementX << std::endl;
-    std::cout << m_persoEtat.deplacementY << std::endl;
-    
-    
-    
+
     //gestion du saut
     if(m_persoEtat.saut)
     {
@@ -61,11 +54,11 @@ void PlayerPhysic::update(const sf::Time t) // bouge selon les accelaration.
     
     //deplacement :
     
-    m_hitBox.left += m_scale*m_vitesseX*( t.asSeconds());
-    m_hitBox.top += m_scale*(m_vitesseY*( t.asSeconds() )+10*t.asSeconds());
     m_transform.translate(  m_vitesseX*( t.asSeconds()), m_vitesseY*( t.asSeconds())+10*t.asSeconds());
     m_transfX =m_vitesseX*( t.asSeconds());
     m_transfY =m_vitesseY*( t.asSeconds())+10*t.asSeconds();
+    m_hitBox.left += m_scale*m_transfX;
+    m_hitBox.top += m_scale*m_transfY;
     return;
     
 }
@@ -136,28 +129,19 @@ void PlayerPhysic::collide(PhysicComponent &other)
             
             break;
     }
-    
-    
+
     return;
 }
 
-
 typeCollision PlayerPhysic::intersect(sf::Vector2f point)
-{
-    
+{    
     return (m_hitBox.contains(point)) ? Collision : AucuneCollision;
-            
-
 }
 
 typeCollision PlayerPhysic::intersect(sf::FloatRect rect)
 {
-    
-    return (rect.intersects(m_hitBox)) ? Collision : AucuneCollision;
-       
+    return (rect.intersects(m_hitBox)) ? Collision : AucuneCollision;      
 }
-
-
 
 void PlayerPhysic::setVitesseX(float accelerationX)
 {
@@ -191,10 +175,12 @@ void PlayerPhysic::resetCoord()
 {
     m_transform.combine(m_transform.getInverse());
     m_transform.scale(m_scale, m_scale);
-    m_hitBox.left = 0;
-    m_hitBox.top = 0;
+    m_transform.translate(m_xBegin,m_yBegin);
+    m_hitBox.left = m_scale*m_xBegin;
+    m_hitBox.top = m_scale*m_yBegin;
     setVitesseX(0);
     setVitesseY(0);
     
     m_persoEtat.resetCoord = false;
 }
+

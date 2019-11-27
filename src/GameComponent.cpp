@@ -1,3 +1,6 @@
+
+
+
 #include "GameComponent.h"
 
 void GameComponent::loadGraphicComponent(GraphicModule &graphicModule)

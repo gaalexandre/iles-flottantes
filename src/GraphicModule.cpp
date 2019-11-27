@@ -12,3 +12,8 @@ void GraphicModule::draw(sf::RenderWindow &window)
     window.draw(**i);
   }
 }
+
+void GraphicModule::unload()
+{
+  m_components.clear();
+}
