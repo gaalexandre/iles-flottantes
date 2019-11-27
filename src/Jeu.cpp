@@ -22,12 +22,22 @@ int Jeu::gameLoop()
     
     // a deplacer dans le constructeur :
     sf::Text HUDCle;
+    sf::Text HUDVictoire;
+    sf::Text HUDMort;
     sf::Font font;
     font.loadFromFile("sansation.ttf");
     HUDCle.setFont(font);
+    HUDMort.setFont(font);
     HUDCle.setFillColor(sf::Color::Black);
     HUDCle.setString("Cle !");
     HUDCle.setCharacterSize(24);
+    
+    
+    
+    
+    
+    
+    
     
     // on charge toutes les map ?
     
@@ -78,14 +88,17 @@ int Jeu::gameLoop()
       m_window.setView(m_window.getDefaultView());
       if(perso.possedeCle())
       {
-      m_window.draw(HUDCle);
+          m_window.draw(HUDCle);
       }
       //m_window.setView(m_view);
+      
+      
+      
 
       
       
-      
-    m_window.display();
+      // afficher la fenetre
+      m_window.display();
   }
   return 0;
 }
@@ -118,6 +131,12 @@ void Jeu::eventLoop()
     }
 }
 
+/*
+void dessinerHUD(Perso perso)
+{
+    
+}
+ */
 
 void Jeu::niveauSuivant()
 {

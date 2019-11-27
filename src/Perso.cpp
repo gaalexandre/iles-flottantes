@@ -40,6 +40,10 @@ bool Perso::possedeCle()
     
     return m_persoEtat.cle;
 }
+bool Perso::finNiveau()
+{
+    return m_persoEtat.contactFinNiveau;
+}
 Perso::~Perso()
 {
   delete m_graphicComponent;

@@ -29,6 +29,7 @@ public:
   Perso(std::string filename);
     
     bool possedeCle();
+    bool finNiveau();
 
   virtual ~Perso();
     

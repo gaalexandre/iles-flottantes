@@ -19,6 +19,7 @@ class Jeu
   
  private:
   void eventLoop();
+
     void niveauSuivant();
     
   
