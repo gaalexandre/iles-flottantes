@@ -11,6 +11,7 @@ struct PersoEtatSystem
     bool contactFinNiveau = false;
     bool surLeSol = false;
     
+    bool cle = false;
     
     bool saut = false;
     bool resetCoord = false;

@@ -78,11 +78,17 @@ void PlayerPhysic::collide(PhysicComponent &other)
     //gerer les collisions particulières :
     switch(other.intersect(m_hitBox))
     {
-        case CollisionMortel:
+        case CollisionMortel :
             m_persoEtat.contactMortel = true;
             break;
         case CollisionFinNiveau :
-            m_persoEtat.contactFinNiveau = true;
+            if(m_persoEtat.cle)
+            {
+                m_persoEtat.contactFinNiveau = true;
+            }
+            break;
+        case CollisionCle :
+            m_persoEtat.cle = true;
             break;
             
         case Collision :

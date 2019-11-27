@@ -92,10 +92,25 @@ typeCollision MapPhysic::intersect(sf::FloatRect rect)
                             }
                             break;
                         case 3 :
-                            // verifier si la moitié (?)
-                            if(retour<=CollisionFinNiveau)
+                            
+                            if(Tile.contains(rect.left+rect.width/2,
+                                             rect.top+rect.height/2))
                             {
-                                retour = CollisionFinNiveau;
+                                if(retour<=CollisionFinNiveau)
+                                {
+                                    retour = CollisionFinNiveau;
+                                }
+                            }
+                            break;
+                        case 4 :
+                            if(Tile.contains(rect.left+rect.width/2,
+                                             rect.top+rect.height/2))
+                            {
+                                if(retour<=CollisionCle)
+                                {
+                                    retour = CollisionCle;
+                                    
+                                }
                             }
                             break;
                         default:

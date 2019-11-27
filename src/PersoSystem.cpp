@@ -38,6 +38,7 @@ PersoSystem::PersoSystem (PersoEtatSystem *persoEtat)
          m_persoEtat.contactMortel = false;
          std::cout << " Mort ! " << std::endl;
          m_persoEtat.resetCoord = true;
+         m_persoEtat.cle = false;
      }
      if(m_persoEtat.contactFinNiveau)
      {
@@ -45,6 +46,8 @@ PersoSystem::PersoSystem (PersoEtatSystem *persoEtat)
          m_persoEtat.contactFinNiveau = false;
          std::cout << " Fin du niveau ! " << std::endl;
          m_persoEtat.resetCoord = true; // a replacer par un changement de niveau 
+         m_persoEtat.cle = false;
+    
      }
      
      
