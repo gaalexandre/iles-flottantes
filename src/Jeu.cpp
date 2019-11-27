@@ -3,18 +3,74 @@
 #include "Perso.h"
 
 #include <iostream>
+#include <fstream>
+#include <sstream>
 
+
+Jeu::~Jeu()
+{
+    for(int i = 0;i< m_listeMap.size();i++)
+    {
+        delete m_listeMap[i];
+    }
+}
 int Jeu::gameLoop()
 {
-    m_window.setView(m_view);
-    Map map("mapExemple");
+  
+    //m_window.setView(m_view);
+    
+    
+    // a deplacer dans le constructeur :
+    sf::Text HUDCle;
+    sf::Text HUDVictoire;
+    sf::Text HUDMort;
+    sf::Font font;
+    font.loadFromFile("sansation.ttf");
+    HUDCle.setFont(font);
+    HUDMort.setFont(font);
+    HUDCle.setFillColor(sf::Color::Black);
+    HUDCle.setString("Cle !");
+    HUDCle.setCharacterSize(24);
+    
+    
+    
+    
+    
+    
+    
+    
+    // on charge toutes les map ?
+    
+    std::ifstream mapFile("Map/descriptionMonde");
+    m_niveauMax = 0;
+    std::string fileName;
+    mapFile >> m_niveauMax >> fileName;
+    m_listeMap.resize(m_niveauMax);
+    for(int i = 0; i<m_niveauMax;i++)
+    {
+        std::ostringstream a;
+        a << (i+1);
+        //std::cout << "-->" << "Map/"+fileName+a.str()<< std::endl;
+        m_listeMap[i] = new Map("Map/"+fileName+a.str());
+    }
+    m_niveauEnCours = 0;
+    
+    
+    
+    
+    
+    
+   
     Perso perso("persoExample");
+    
+    
+    
     perso.loadGraphicComponent(m_graphicModule);
     perso.loadPhysicComponent(m_physicModule);
     perso.loadSystemComponent(m_systemModule);
     
-    map.loadGraphicComponent(m_graphicModule);
-    map.loadPhysicComponent(m_physicModule);
+    m_listeMap[m_niveauEnCours]->loadGraphicComponent(m_graphicModule);
+    m_listeMap[m_niveauEnCours]->loadPhysicComponent(m_physicModule);
     
     sf::Clock timer;
     
@@ -27,7 +83,22 @@ int Jeu::gameLoop()
     
     m_window.clear(sf::Color::Black);
     m_graphicModule.draw(m_window);
-    m_window.display();
+      
+    // dessiner l'HUD
+      m_window.setView(m_window.getDefaultView());
+      if(perso.possedeCle())
+      {
+          m_window.draw(HUDCle);
+      }
+      //m_window.setView(m_view);
+      
+      
+      
+
+      
+      
+      // afficher la fenetre
+      m_window.display();
   }
   return 0;
 }
@@ -49,7 +120,7 @@ void Jeu::eventLoop()
 	  break;
 	case sf::Event::Resized:
     m_view.setSize(m_event.size.width, m_event.size.height);
-    m_view.zoom(2);
+    //m_view.zoom(2);
     m_window.setView(m_view);
 	  
 	  break;
@@ -57,5 +128,20 @@ void Jeu::eventLoop()
             
 	  break;
 	}
+    }
+}
+
+/*
+void dessinerHUD(Perso perso)
+{
+    
+}
+ */
+
+void Jeu::niveauSuivant()
+{
+    if(m_niveauEnCours<m_niveauMax-1)
+    {
+        //m_listeMap[m_niveauEnCours].unlo
     }
 }

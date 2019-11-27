@@ -9,7 +9,9 @@ struct PersoEtatSystem
     
     bool contactMortel = false;
     bool contactFinNiveau = false;
+    bool surLeSol = false;
     
+    bool cle = false;
     
     bool saut = false;
     bool resetCoord = false;
@@ -25,6 +27,9 @@ class Perso : public GameComponent
 {
 public:
   Perso(std::string filename);
+    
+    bool possedeCle();
+    bool finNiveau();
 
   virtual ~Perso();
     
