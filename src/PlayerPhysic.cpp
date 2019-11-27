@@ -37,6 +37,9 @@ void PlayerPhysic::update(const sf::Time t) // bouge selon les accelaration.
     //gestion des déplacements du system
     setVitesseX(m_persoEtat.deplacementX*100);
     
+    std::cout << m_persoEtat.deplacementX << std::endl;
+    std::cout << m_persoEtat.deplacementY << std::endl;
+    
     
     
     //gestion du saut
@@ -94,7 +97,7 @@ void PlayerPhysic::collide(PhysicComponent &other)
         case Collision :
                 m_transform.translate( -1*m_transfX, 0);
                 m_hitBox.left -= m_scale*m_transfX;
-                if(other.intersect(m_hitBox))
+                if(other.intersect(m_hitBox) == Collision)
                 {
                     if(m_transfY>0)
                     {
@@ -107,7 +110,7 @@ void PlayerPhysic::collide(PhysicComponent &other)
                     m_transform.translate(0, -1*m_transfY);
                     m_hitBox.top -= m_scale*m_transfY;
                     
-                    if(other.intersect(m_hitBox))
+                    if(other.intersect(m_hitBox) == Collision)
                     {
                         m_transform.translate( -1*m_transfX, 0);
                         m_hitBox.left -= m_scale*m_transfX;
