@@ -16,8 +16,8 @@ Jeu::~Jeu()
 }
 int Jeu::gameLoop()
 {
-  
-    //m_window.setView(m_view);
+    m_view.zoom(2);
+    m_window.setView(m_view);
     
     
     // a deplacer dans le constructeur :
