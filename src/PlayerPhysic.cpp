@@ -35,8 +35,8 @@ void PlayerPhysic::update(const sf::Time t) // bouge selon les accelaration.
     }
     else
     {
-        m_animation.frame = m_animation.state == wait ? m_animation.frame : 0;
-        m_animation.state = wait;
+        m_animation.frame = m_animation.state == stand ? m_animation.frame : 0;
+        m_animation.state = stand;
     }
     
     //gestion du saut
@@ -250,7 +250,7 @@ void PlayerPhysic::saut()
 {
     if(m_persoEtat.surLeSol)
     {
-        setVitesseY(-180);
+        setVitesseY(-220);
         m_persoEtat.surLeSol=false;
     }
     m_persoEtat.saut = false;

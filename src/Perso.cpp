@@ -11,7 +11,7 @@
 Perso::Perso(std::string filename, double xBegin, double yBegin)
 {
     
-  m_transform.scale(sf::Vector2f(1.f,1.f));
+  m_transform.scale(sf::Vector2f(0.7f,0.7f));
   std::ifstream file(filename);
   std::string textureFilename, name;
   int x,L,y,l,nb,height,width;
@@ -38,7 +38,7 @@ Perso::Perso(std::string filename, double xBegin, double yBegin)
     
     
     
-  PlayerPhysic* t = new PlayerPhysic(&m_transform,0,0,L,l,1.f,&m_persoEtat, &m_animation,xBegin,yBegin);
+  PlayerPhysic* t = new PlayerPhysic(&m_transform,0,0,L,l,0.7f,&m_persoEtat, &m_animation,xBegin,yBegin);
   m_physicComponent = t;
   m_systemComponent = new PersoSystem(&m_persoEtat, &m_animation);
     
