@@ -1,10 +1,3 @@
-//
-//  PersoSystem.hpp
-//  
-//
-//  Created by Lucas Bourel on 06/11/2019.
-//
-
 #ifndef PERSOSYSTEM_H
 #define PERSOSYSTEM_H
 
@@ -20,13 +13,14 @@
 
 class PersoSystem : public SystemComponent
 {
-    public :
-    PersoSystem(PersoEtatSystem* persoEtat);
+public :
+    PersoSystem(PersoEtatSystem* persoEtat, PersoAnimation *animation);
     virtual void manageEvent (sf::Event event);
     
     
-    private :
+private :
     PersoEtatSystem& m_persoEtat;
+  PersoAnimation &m_animation;
     
     std::map<std::string, sf::SoundBuffer> m_soundBuffers;
     std::map<std::string, sf::Sound> m_sounds;

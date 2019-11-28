@@ -1,18 +1,11 @@
-//
-//  PlayerPhysic.cpp
-//  
-//
-//  Created by Lucas Bourel on 24/10/2019.
-//
-
 #include "PlayerPhysic.h"
 #include "Perso.h"
 #include <iostream>
 
-PlayerPhysic::PlayerPhysic(sf::Transform *t,float x, float y, float width, float height, float scale, PersoEtatSystem* persoEtat, double xBegin, double yBegin)
-  :  m_hitBox(x,y, scale*width, scale*height),m_transform (*t), m_persoEtat(*persoEtat), m_scale(scale), m_xBegin(xBegin), m_yBegin(yBegin)
+PlayerPhysic::PlayerPhysic(sf::Transform *t,float x, float y, float width, float height, float scale, PersoEtatSystem* persoEtat, PersoAnimation *animation, double xBegin, double yBegin)
+:  m_hitBox(x,y, scale*width, scale*height),m_transform (*t), m_persoEtat(*persoEtat), m_scale(scale), m_animation{*animation}, m_xBegin(xBegin), m_yBegin(yBegin)
 {
-  resetCoord();
+    
 }
 
 void PlayerPhysic::update(const sf::Time t) // bouge selon les accelaration.
@@ -22,28 +15,49 @@ void PlayerPhysic::update(const sf::Time t) // bouge selon les accelaration.
     //gestion de la gravité
     if(not m_persoEtat.surLeSol)
     {
-    addVitesse(0,180*t.asSeconds());
-    
-    
-    if(m_vitesseY>450) // vitesse limite
-    {
-        m_vitesseY=450;
-    }
+        addVitesse(0,180*t.asSeconds());
+        
+        
+        if(m_vitesseY>450) // vitesse limite
+        {
+            m_vitesseY=450;
+        }
     }
     
     //gestion des déplacements du system
     setVitesseX(m_persoEtat.deplacementX*100);
-    
 
+    if(m_persoEtat.deplacementX)
+    {
+        m_animation.frame = m_animation.state == walk ? m_animation.frame : 0;
+        m_animation.state = walk;
+        m_animation.direction = m_persoEtat.deplacementX;
+    }
+    else
+    {
+        m_animation.frame = m_animation.state == wait ? m_animation.frame : 0;
+        m_animation.state = wait;
+    }
+    
     //gestion du saut
     if(m_persoEtat.saut)
     {
         saut();
     }
-    
+
+    if(!m_persoEtat.surLeSol)
+    {
+        m_animation.frame = m_animation.state == jump ? m_animation.frame : 0;
+        m_animation.state = jump;
+    }
+
+    int step = (m_animation.clock + t.asMilliseconds()) / m_animation.timeBetweenFrames[m_animation.state];
+    m_animation.clock = (m_animation.clock + t.asMilliseconds()) % m_animation.timeBetweenFrames[m_animation.state];
+    m_animation.frame = (m_animation.frame+step)%m_animation.nbFrames[m_animation.state];
+   
     // reinitialisation des coordonnées si demandé.
     if(m_persoEtat.resetCoord)
-            resetCoord();
+        resetCoord();
     
     
     
@@ -72,6 +86,70 @@ void PlayerPhysic::collide(PhysicComponent &other)
     
     
     //gerer les collisions particulières :
+    int typeCollision = other.intersect(m_hitBox);
+    std::cout << typeCollision << std::endl;
+    if((typeCollision&CollisionMortel) != 0)
+    {
+        m_persoEtat.contactMortel = true;
+    }
+    if((typeCollision&CollisionFinNiveau) !=0)
+    {
+        if(m_persoEtat.cle)
+        {
+            m_persoEtat.contactFinNiveau = true;
+        }
+    }
+    if((typeCollision&CollisionCle) !=0)
+    {
+        m_persoEtat.cle = true;
+    }
+    
+    if((typeCollision&Collision) !=0)
+    {
+        m_transform.translate( -1*m_transfX, 0);
+        m_hitBox.left -= m_scale*m_transfX;
+        typeCollision = other.intersect(m_hitBox);
+        if((typeCollision&Collision)!=0)
+        {
+            if(m_transfY>0)
+            {
+                m_persoEtat.surLeSol=true;
+            }
+            
+            m_transform.translate(m_transfX, 0);
+            m_hitBox.left += m_scale*m_transfX;
+            
+            m_transform.translate(0, -1*m_transfY);
+            m_hitBox.top -= m_scale*m_transfY;
+            
+            typeCollision = other.intersect(m_hitBox);
+            if((typeCollision&Collision)!=0)
+            {
+                m_transform.translate( -1*m_transfX, 0);
+                m_hitBox.left -= m_scale*m_transfX;
+                setVitesseY(0);
+                setVitesseX(0);
+                return;
+            }
+            else
+            {
+                setVitesseY(0);
+                return;
+            }
+            
+        }
+        else
+        {
+            setVitesseX(0);
+            return;
+        }
+    }
+    
+    
+    
+    
+    
+    /*
     switch(other.intersect(m_hitBox))
     {
         case CollisionMortel :
@@ -127,18 +205,20 @@ void PlayerPhysic::collide(PhysicComponent &other)
             break;
         case AucuneCollision:
             
-            break;
-    }
+             break;
+      }
+     */
+   
 
     return;
 }
 
-typeCollision PlayerPhysic::intersect(sf::Vector2f point)
+int PlayerPhysic::intersect(sf::Vector2f point)
 {    
     return (m_hitBox.contains(point)) ? Collision : AucuneCollision;
 }
 
-typeCollision PlayerPhysic::intersect(sf::FloatRect rect)
+int PlayerPhysic::intersect(sf::FloatRect rect)
 {
     return (rect.intersects(m_hitBox)) ? Collision : AucuneCollision;      
 }

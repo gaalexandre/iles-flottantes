@@ -98,44 +98,50 @@ tiles_spritesheet.png
 
 
 
-2   obstacle            6
-    0   grass               1
-        0   grassObstacle      504  0    70     70       2   2       2       2
+2   lava            6
+    0   grass               2
+        0   grassLavaTop_mid    432 792 70      70      0   2       2       2
+        1   grassLava           504 0   70      70      2   2       2       2
 
-    1   castle              1
-        0   castleObstacle     504  0    70     70       2   2       2       2
+    1   castle              2
+        0   grassLavaTop_mid    432 792 70      70      0   2       2       2
+        1   castleLava          504 0   70      70      2   2       2       2
 
-    2   dirt                1
-        0   dirtObstacle        504  0    70     70      2   2       2       2
+    2   dirt                2
+        0   grassLavaTop_mid    432 792 70      70      0   2       2       2
+        1   dirtLava            504 0   70      70      2   2       2       2
 
-    3   sand                1
-        0   sandObstacle        504  0    70    70       2   2       2       2
+    3   sand                2
+        0   grassLavaTop_mid    432 792 70      70      0   2       2       2
+        1   sandLava            504 0   70      70      2   2       2       2
 
-    4   snow                1
-        0   snowObstacle        504  0    70   70      2   2       2       2
+    4   snow                2
+        0   grassLavaTop_mid    432 792 70      70      0   2       2       2
+        1   snowLava            504 0   70      70      2   2       2       2
 
-    5   stone               1
-        0   stoneObstacle      504  0    70    70     2   2       2       2
+    5   stone               2
+        0   grassLavaTop_mid    432 792 70      70      0   2       2       2
+        1   stoneLava           504 0   70      70      2   2       2       2
 
 
 3   finNiveau            6
     0   grass               1
-        0   grassfinNiveau      288  360  70  70        2   2       2       2
+        0   grassfinNiveau      288 360 70      70      2   2       2       2
 
     1   castle              1
-        0   castlefinNiveau     288  360  70  70        2   2       2       2
+        0   castlefinNiveau     288 360 70      70      2   2       2       2
 
     2   dirt                1
-        0   dirtfinNiveau        288  360  70  70        2   2       2       2
+        0   dirtfinNiveau       288 360 70      70      2   2       2       2
 
     3   sand                1
-        0   sandfinNiveau        288  360  70  70        2   2       2       2
+        0   sandfinNiveau       288 360 70      70      2   2       2       2
 
     4   snow                1
-        0   snowfinNiveau        288  360  70  70        2   2       2       2
+        0   snowfinNiveau       288 360 70      70      2   2       2       2
 
     5   stone               1
-        0   stonefinNiveau      288  360  70  70         2   2       2       2
+        0   stonefinNiveau      288 360 70      70      2   2       2       2
 
 
 
