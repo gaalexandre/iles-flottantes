@@ -27,7 +27,7 @@ int Jeu::gameLoop()
     HUDCle.setFont(font);
     HUDMort.setFont(font);
     HUDCle.setFillColor(sf::Color::Red);
-    HUDCle.setString("Cle !");
+    HUDCle.setString("Item : Clé");
     HUDCle.setCharacterSize(24);
     
   while (m_window.isOpen())

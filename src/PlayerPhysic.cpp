@@ -92,6 +92,11 @@ void PlayerPhysic::collide(PhysicComponent &other)
     
     if((typeCollision&Collision) !=0)
     {
+        if( m_persoEtat.surLeSol)
+        {
+            m_persoEtat.sonCollision=1;
+        }
+        
         m_transform.translate( -1*m_transfX, 0);
         m_hitBox.left -= m_scale*m_transfX;
         typeCollision = other.intersect(m_hitBox);

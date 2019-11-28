@@ -9,18 +9,20 @@ PersoSystem::PersoSystem (PersoEtatSystem *persoEtat)
     
     //on charge les sons
     
-    std::string listeSon[2] = {"saut", "victoire"};
+    std::string listeSon[8] = {"saut", "victoire", "jump1",
+        "deathPain", "youLose", "victory", "victory2", "collision"
+    };
     // de taille 2
     
-    for(int i = 0; i < 2;i++)
+    for(int i = 0; i < 8;i++)
     {
     if(!m_soundBuffers[listeSon[i]].loadFromFile("./audio/"+listeSon[i]+".wav"))
     {
-        std::cout << " Erreur de chargement de son" << std::endl;
+        std::cout << "Erreur de chargement de son" << std::endl;
         // lancer une exception ?
     }
     m_sounds[listeSon[i]].setBuffer(m_soundBuffers[listeSon[i]]);
-    m_sounds[listeSon[i]].setVolume(50.f);
+    //m_sounds[listeSon[i]].setVolume(50.f);
     }
  
   
@@ -34,7 +36,8 @@ PersoSystem::PersoSystem (PersoEtatSystem *persoEtat)
      // gerer les états detecté par le physique :
      if(m_persoEtat.contactMortel)
      {
-         m_sounds["saut"].play();
+         m_sounds["deathPain"].play();
+         m_sounds["youLose"].play();
          m_persoEtat.contactMortel = false;
          std::cout << " Mort ! " << std::endl;
          m_persoEtat.resetCoord = true;
@@ -42,7 +45,7 @@ PersoSystem::PersoSystem (PersoEtatSystem *persoEtat)
      }
      if(m_persoEtat.contactFinNiveau)
      {
-         m_sounds["victoire"].play();
+         m_sounds["victory"].play();
          m_persoEtat.contactFinNiveau = false;
          std::cout << " Fin du niveau ! " << std::endl;
          m_persoEtat.resetCoord = true; // a replacer par un changement de niveau 
@@ -51,7 +54,12 @@ PersoSystem::PersoSystem (PersoEtatSystem *persoEtat)
      }
      
      
-     
+     //gerer les sons declenches :
+     if(m_persoEtat.sonCollision ==1)
+     {
+         m_persoEtat.sonCollision =0;
+         m_sounds["collision"].play();
+     }
      
      
      
@@ -92,7 +100,7 @@ PersoSystem::PersoSystem (PersoEtatSystem *persoEtat)
      {
          if(m_persoEtat.surLeSol)
          {
-         m_sounds["saut"].play();
+         m_sounds["jump1"].play();
          m_persoEtat.saut = true;
          }
      }

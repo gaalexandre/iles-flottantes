@@ -11,6 +11,10 @@ struct PersoEtatSystem
     bool contactFinNiveau = true;
     bool surLeSol = false;
     
+    int sonCollision = 0;
+    
+    
+    
     bool cle = false;
     bool saut = false;
     bool resetCoord = false;
