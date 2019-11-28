@@ -35,8 +35,8 @@ void PlayerPhysic::update(const sf::Time t) // bouge selon les accelaration.
     }
     else
     {
-        m_animation.frame = m_animation.state == wait ? m_animation.frame : 0;
-        m_animation.state = wait;
+        m_animation.frame = m_animation.state == stand ? m_animation.frame : 0;
+        m_animation.state = stand;
     }
     
     //gestion du saut
@@ -99,13 +99,19 @@ void PlayerPhysic::collide(PhysicComponent &other)
             m_persoEtat.contactFinNiveau = true;
         }
     }
-    if((typeCollision&CollisionCle) !=0)
+    if((typeCollision&CollisionCle) !=0 && m_persoEtat.sonCollision != -1)
     {
         m_persoEtat.cle = true;
+        m_persoEtat.sonCollision = 2;
     }
     
     if((typeCollision&Collision) !=0)
     {
+        if( m_persoEtat.surLeSol)
+        {
+            //m_persoEtat.sonCollision=1;
+        }
+        
         m_transform.translate( -1*m_transfX, 0);
         m_hitBox.left -= m_scale*m_transfX;
         typeCollision = other.intersect(m_hitBox);
@@ -245,7 +251,7 @@ void PlayerPhysic::saut()
 {
     if(m_persoEtat.surLeSol)
     {
-        setVitesseY(-180);
+        setVitesseY(-220);
         m_persoEtat.surLeSol=false;
     }
     m_persoEtat.saut = false;
@@ -262,5 +268,6 @@ void PlayerPhysic::resetCoord()
     setVitesseY(0);
     
     m_persoEtat.resetCoord = false;
+    m_persoEtat.sonCollision = 0;
 }
 

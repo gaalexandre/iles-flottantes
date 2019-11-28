@@ -11,6 +11,10 @@ struct PersoEtatSystem
     bool contactFinNiveau = true;
     bool surLeSol = false;
     
+    int sonCollision = 0;
+    
+    
+    
     bool cle = false;
     bool saut = false;
     bool resetCoord = false;
@@ -19,7 +23,7 @@ struct PersoEtatSystem
 };
 
 enum states{
-  wait=0,
+  stand=0,
   hurt=1,
   jump=2,
   walk=3
