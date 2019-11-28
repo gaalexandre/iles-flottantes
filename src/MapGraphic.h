@@ -11,6 +11,7 @@ public:
 
 private:
   virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+  virtual void update(sf::Time t);
   sf::VertexArray m_vertices;
   sf::VertexArray m_verticesBackground;
   sf::Texture m_tileset;

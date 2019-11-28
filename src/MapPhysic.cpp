@@ -87,15 +87,17 @@ int MapPhysic::intersect(sf::FloatRect rect)
                         case 3 :
                             
                             if(Tile.contains(rect.left+rect.width/2,
-                                             rect.top+rect.height/2))
+                                             rect.top+0.8*rect.height))
                             {
                                 retour |= CollisionFinNiveau;
+                                std::cout << "fin\n";
                             }
                             break;
                         case 4 :
                             if(Tile.contains(rect.left+rect.width/2,
-                                             rect.top+rect.height/2))
+                                             rect.top+0.8*rect.height))
                             {
+                                std::cout << "cle\n";
                                 retour |= CollisionCle;
                             }
                             break;

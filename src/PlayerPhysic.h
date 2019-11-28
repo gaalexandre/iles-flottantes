@@ -14,7 +14,7 @@ class PlayerPhysic : public PhysicComponent
 public:
     
     PlayerPhysic(sf::Transform *m_transform,float x,
-                 float y, float width, float height,float, PersoEtatSystem* persoEtat, double xBegin, double yBegin);
+                 float y, float width, float height,float, PersoEtatSystem*, PersoAnimation *animation, double xBegin, double yBegin);
     
     virtual void update(const sf::Time t);
     virtual void collide( PhysicComponent &other);
@@ -55,6 +55,9 @@ protected:
     
     
     float m_scale{0};
+    
+    PersoAnimation &m_animation;
+    
     double m_xBegin;
     double m_yBegin;
 
