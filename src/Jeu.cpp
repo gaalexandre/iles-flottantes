@@ -6,15 +6,18 @@
 
 int Jeu::gameLoop()
 {
+    std::ifstream levelFile("levelNumber");
+
+    levelFile >> m_levelMax;
 
     m_view.zoom(1.4f);
     m_window.setView(m_view);
 
-  m_map=nullptr;
-  m_perso=nullptr;
+    m_map=nullptr;
+    m_perso=nullptr;
 
-  sf::Clock timer;
-  loadNextLevel();
+    sf::Clock timer;
+    loadNextLevel();
   
     
     
@@ -43,23 +46,23 @@ int Jeu::gameLoop()
     
     m_window.clear(sf::Color::Black);
 
-      m_view.setCenter(m_perso->getCoord());
-      m_graphicModule.draw(m_window);
+    m_view.setCenter(m_perso->getCoord());
+    m_graphicModule.draw(m_window);
       
       
     // dessiner l'HUD
-      m_window.setView(m_window.getDefaultView());
-      if(m_perso->possedeCle())
-      {
-          m_window.draw(HUDCle);
-      }
-      m_window.setView(m_view);
-      
-      // afficher la fenetre
-      if(m_perso->hasFinishedLevel())
-          loadNextLevel();
-      
-      m_window.display();
+    m_window.setView(m_window.getDefaultView());
+    if(m_perso->possedeCle())
+    {
+        m_window.draw(HUDCle);
+    }
+    m_window.setView(m_view);
+    
+    // afficher la fenetre
+    if(m_perso->hasFinishedLevel())
+        loadNextLevel();
+    
+    m_window.display();
       
       
   }
@@ -76,39 +79,34 @@ void Jeu::eventLoop()
 {
     while (m_window.pollEvent(m_event))
     {
-	switch (m_event.type)
-	{
-    
-	    
-	    case sf::Event::Closed:
-		m_window.close();
-		break;
+        switch (m_event.type)
+        {
+        
+            
+            case sf::Event::Closed:
+                m_window.close();
+                break;
 
-	    case sf::Event::KeyPressed:
-           
-		break;
-	    case sf::Event::Resized:
-		m_view.setSize(m_event.size.width, m_event.size.height);
-		m_view.zoom(1);
-		m_window.setView(m_view);
-	  
-		break;
-	    default:
-		break;
-	    
-	}
+            case sf::Event::KeyPressed:
+            
+                break;
+            case sf::Event::Resized:
+                m_view.setSize(m_event.size.width, m_event.size.height);
+                m_view.zoom(1);
+                m_window.setView(m_view);
+            
+                break;
+            default:
+                break;
+            
+        }
     }
 }
-/*
-    Map map("mapExemple");
-    Perso perso("p1_spritesheet");
-    perso.loadGraphicComponent(m_graphicModule);
-    perso.loadPhysicComponent(m_physicModule);
-    perso.loadSystemComponent(m_systemModule);*/
+
 
 void Jeu::loadNextLevel()
 {
-    m_levelNumber++;
+    m_levelNumber = m_levelNumber % m_levelMax + 1;
     m_graphicModule.unload();
     m_physicModule.unload();
     m_systemModule.unload();
