@@ -40,6 +40,7 @@ int Jeu::gameLoop()
     music.setVolume(70.f);
     music.setLoop(true);
     music.play();
+
     
     
   while (m_window.isOpen())
