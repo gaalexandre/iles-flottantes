@@ -1,15 +1,10 @@
-//
-//  PlayerPhysic.hpp
-//  
-//
-//  Created by Lucas Bourel on 24/10/2019.
-//
-
 #ifndef PlayerPhysic_hpp
 #define PlayerPhysic_hpp
 
 #include <SFML/Graphics.hpp>
 #include "PhysicComponent.h"
+#include "SystemComponent.h"
+#include "Perso.h"
 #include <SFML/System.hpp>
 
 #include <stdio.h>
@@ -18,7 +13,8 @@ class PlayerPhysic : public PhysicComponent
 {
 public:
     
-    PlayerPhysic(sf::Transform *m_transform,float x, float y, float width, float height);
+    PlayerPhysic(sf::Transform *m_transform,float x,
+                 float y, float width, float height,float, PersoEtatSystem*, PersoAnimation *animation, double xBegin, double yBegin);
     
     virtual void update(const sf::Time t);
     virtual void collide( PhysicComponent &other);
@@ -28,15 +24,21 @@ public:
     
     void saut();
     
+    bool estEncollisionObstacle();
+    bool estEnColiisionFinNiveau();
+    
+    
     
 
 protected:
     
 
-    virtual bool intersect(sf::Vector2f point);
-    virtual bool intersect(sf::FloatRect rect);
+    virtual int intersect(sf::Vector2f point);
+    virtual int intersect(sf::FloatRect rect);
     
-     sf::FloatRect m_hitBox;
+    void resetCoord();
+    
+    sf::FloatRect m_hitBox;
     
     float m_transfX{0};
     float m_transfY{0};
@@ -45,12 +47,20 @@ protected:
     float m_vitesseX{0};
     float m_vitesseY{0};
     
-    bool m_surLeSol{false};
+   
     
     
     sf::Transform &m_transform;
-
+    PersoEtatSystem& m_persoEtat;
     
+    
+    float m_scale{0};
+    
+    PersoAnimation &m_animation;
+    
+    double m_xBegin;
+    double m_yBegin;
+
 };
 
 

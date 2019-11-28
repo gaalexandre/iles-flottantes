@@ -14,7 +14,11 @@ void SystemModule::manageEvent(sf::Event event)
     for(auto it = m_components.begin(); it != m_components.end(); it++)
     {
         (*it)->manageEvent(event);
-        
     }
   
+}
+
+void SystemModule::unload()
+{
+  m_components.clear();
 }
