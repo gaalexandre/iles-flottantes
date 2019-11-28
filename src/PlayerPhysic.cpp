@@ -99,16 +99,17 @@ void PlayerPhysic::collide(PhysicComponent &other)
             m_persoEtat.contactFinNiveau = true;
         }
     }
-    if((typeCollision&CollisionCle) !=0)
+    if((typeCollision&CollisionCle) !=0 && m_persoEtat.sonCollision != -1)
     {
         m_persoEtat.cle = true;
+        m_persoEtat.sonCollision = 2;
     }
     
     if((typeCollision&Collision) !=0)
     {
         if( m_persoEtat.surLeSol)
         {
-            m_persoEtat.sonCollision=1;
+            //m_persoEtat.sonCollision=1;
         }
         
         m_transform.translate( -1*m_transfX, 0);
@@ -267,5 +268,6 @@ void PlayerPhysic::resetCoord()
     setVitesseY(0);
     
     m_persoEtat.resetCoord = false;
+    m_persoEtat.sonCollision = 0;
 }
 

@@ -9,12 +9,12 @@ PersoSystem::PersoSystem (PersoEtatSystem *persoEtat, PersoAnimation *animation)
     
     //on charge les sons
     
-    std::string listeSon[8] = {"saut", "victoire", "jump1",
-        "deathPain", "youLose", "victory", "victory2", "collision"
+    std::string listeSon[9] = {"saut", "victoire", "jump1",
+        "deathPain", "youLose", "victory", "victory2", "collision", "item"
     };
     // de taille 2
     
-    for(int i = 0; i < 8;i++)
+    for(int i = 0; i < 9;i++)
     {
     if(!m_soundBuffers[listeSon[i]].loadFromFile("./audio/"+listeSon[i]+".wav"))
     {
@@ -51,6 +51,11 @@ PersoSystem::PersoSystem (PersoEtatSystem *persoEtat, PersoAnimation *animation)
          m_persoEtat.resetCoord = true; // a replacer par un changement de niveau 
          m_persoEtat.cle = false;
     
+     }
+     if(m_persoEtat.sonCollision == 2)
+     {
+         m_sounds["item"].play();
+         m_persoEtat.sonCollision = -1;
      }
      
      

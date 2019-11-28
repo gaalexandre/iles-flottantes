@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <SFML/Audio.hpp>
 
 int Jeu::gameLoop()
 {
@@ -32,6 +33,14 @@ int Jeu::gameLoop()
     HUDCle.setFillColor(sf::Color::Red);
     HUDCle.setString("Item : Clef");
     HUDCle.setCharacterSize(24);
+    
+    
+    sf::Music music;
+    music.openFromFile("audio/ambiance2.wav");
+    music.setVolume(70.f);
+    music.setLoop(true);
+    music.play();
+    
     
   while (m_window.isOpen())
   {
