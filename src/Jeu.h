@@ -9,6 +9,7 @@
 #include "GraphicModule.h"
 #include "Map.h"
 #include "Perso.h"
+#include "Menu.h"
 
 #include "Map.h"
 #include <vector>
@@ -28,6 +29,9 @@ class Jeu
   PhysicModule m_physicModule;
   SystemModule m_systemModule;
 
+  bool m_inMenu=false;
+   
+  Menu *m_menu{nullptr};
   Perso *m_perso{nullptr};
   Map *m_map{nullptr};
   int m_levelMax{0};

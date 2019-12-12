@@ -1,0 +1,24 @@
+p2_spritesheet.png
+32 48
+
+wait 1 1
+p1_stand 67 190 66 92
+
+hurt 1 1
+p1_hurt 438 0 69 92
+
+jump 1 1
+p1_jump 434 92 67 92
+
+walk 11 17
+p1_walk01 0 0 72 92
+p1_walk02 69 0 72 92
+p1_walk03 142 0 72 92
+p1_walk04 0 92 72 92
+p1_walk05 69 92 72 92
+p1_walk06 142 92 72 92
+p1_walk07 215 0 72 92
+p1_walk08 288 0 72 92
+p1_walk09 215 92 72 92
+p1_walk10 361 0 72 92
+p1_walk11 288 92 72 92

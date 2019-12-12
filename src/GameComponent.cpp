@@ -1,8 +1,5 @@
-
-
-
 #include "GameComponent.h"
-
+#include "iostream"
 void GameComponent::loadGraphicComponent(GraphicModule &graphicModule)
 {
   if(m_graphicComponent!=nullptr)
@@ -11,7 +8,7 @@ void GameComponent::loadGraphicComponent(GraphicModule &graphicModule)
 
 void GameComponent::loadSystemComponent(SystemModule &systemModule)
 {
-  if(m_physicComponent!=nullptr)
+  if(m_systemComponent!=nullptr)
     systemModule.addComponent(*m_systemComponent);
 }
 void GameComponent::loadPhysicComponent(PhysicModule &physicModule)

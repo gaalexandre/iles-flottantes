@@ -11,6 +11,10 @@ Map::Map(std::string filename)
   int height, width, tileSize, worldType;
   mapFile >> textureDescriptionFilename >> textureFilename >> backgroundFilename >> height >> width >> tileSize >> worldType;
 
+  m_height = height;
+  m_width = width;
+  m_tileSize = tileSize;
+  
   std::ifstream textureDescription(textureDescriptionFilename);
   int nbTile;
   textureDescription >> nbTile;
@@ -45,8 +49,38 @@ Map::Map(std::string filename)
 
   delete[] tilesKinds;
   delete[] tilesNumber;
+  
 }
 
+int Map::typeBloc(sf::Vector2f point)
+{
+  int i = point.x / m_tileSize;
+  int j = point.y / m_tileSize;
+  return m_tilesKind[i][j];
+  
+}
+bool Map::change(sf::Vector2f point, int changement, int changementKind)
+{
+  
+  int i = point.x / m_tileSize;
+  int j = point.y / m_tileSize;
+  
+  if(i > m_width || j> m_height) // >= ?
+  {
+    return false;
+  }
+  
+  (dynamic_cast<MapGraphic*>(m_graphicComponent))->change(point, changement);// A MODIFIER
+  
+  
+  m_tilesKind[i][j] = changementKind;
+   
+  return true;
+   
+  
+}
+              
+              
 Map::~Map()
 {
   delete m_graphicComponent;

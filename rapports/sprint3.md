@@ -122,7 +122,7 @@ Complexité des nouvelles US planifié : 188
 
 |           | :(    |  :&#124;   | :)    | :D    |
 |:--------: |:----: |:----:     |:----: |:----: |
-| Equipe 7  |  *0*  |  *4*      |  *2*  |  *0*  |
+| Equipe 11 |  *0*  |  *4*      |  *2*  |  *0*  |
 
 ### Taux de confiance de l'équipe pour la réalisation du projet
 
@@ -130,4 +130,4 @@ Complexité des nouvelles US planifié : 188
 
 |           | :(    | :&#124;   | :)    | :D    |
 |:--------: |:----: |:----:     |:----: |:----: |
-| Equipe 7  |  *3*  |  *3*      |  *0*  |  *0*  |
+| Equipe 11 |  *3*  |  *3*      |  *0*  |  *0*  |
