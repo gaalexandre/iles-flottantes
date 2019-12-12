@@ -1,0 +1,7 @@
+particles_sheet.png
+
+nullPower   0   0   0   0
+airPower    70  0   49  47
+firePower   0   70  49  47
+waterPower  70  70  49  47
+earthPower  0   0   49  47

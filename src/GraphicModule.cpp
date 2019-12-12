@@ -1,5 +1,5 @@
 #include "GraphicModule.h"
-
+#include "iostream"
 void GraphicModule::addComponent(GraphicComponent &component)
 {
   m_components.push_front(&component);
@@ -17,10 +17,8 @@ void GraphicModule::update(const sf::Time t)
 {
     for(auto it = m_components.begin(); it != m_components.end(); it++)
     {
-        
         (*it)->update(t);
     }
-  
 }
 void GraphicModule::unload()
 {

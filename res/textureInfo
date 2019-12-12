@@ -1,5 +1,5 @@
 tiles_spritesheet.png
-5
+10
 
 0   void                6
     0   grass               1
@@ -98,7 +98,7 @@ tiles_spritesheet.png
 
 
 
-2   lava            6
+2   lava                6
     0   grass               2
         0   grassLavaTop_mid    432 792 70      70      0   2       2       2
         1   grassLava           504 0   70      70      2   2       2       2
@@ -124,7 +124,7 @@ tiles_spritesheet.png
         1   stoneLava           504 0   70      70      2   2       2       2
 
 
-3   finNiveau            6
+3   finNiveau           6
     0   grass               1
         0   grassfinNiveau      288 360 70      70      2   2       2       2
 
@@ -145,23 +145,118 @@ tiles_spritesheet.png
 
 
 
-4   lock           6
+4   lock                6
     0   grass               1
-        0   grassLock      0 720 70 70        2   2       2       2
+        0   grassLock           0   720 70      70      2   2       2       2
 
     1   castle              1
-        0   castleLock     0 720 70 70        2   2       2       2
+        0   castleLock          0   720 70      70      2   2       2       2
 
     2   dirt                1
-        0   dirtLock        0 720 70 70         2   2       2       2
+        0   dirtLock            0   720 70      70      2   2       2       2
 
     3   sand                1
-        0   sandLock       0 720 70 70        2   2       2       2
+        0   sandLock            0   720 70      70      2   2       2       2
 
     4   snow                1
-        0   snowLock        0 720 70 70        2   2       2       2
+        0   snowLock            0   720 70      70      2   2       2       2
 
     5   stone               1
-        0   stoneLock      0 720 70 70         2   2       2       2
+        0   stoneLock           0   720 70      70      2   2       2       2
 
-    id  name                x    y    width    height    up    right    down    left
+5   nullAltar           6
+    0   grass               1
+        0   grassNullAltar      0   792 70      70      2   2       2       2
+
+    1   castle              1
+        0   castleNullAltar     0   792 70      70      2   2       2       2
+
+    2   dirt                1
+        0   dirtNullAltar       0   792 70      70      2   2       2       2
+
+    3   sand                1
+        0   sandNullAltar       0   792 70      70      2   2       2       2
+
+    4   snow                1
+        0   snowNullAltar       0   792 70      70      2   2       2       2
+
+    5   stone               1
+        0   stoneNullAltar      0   792 70      70      2   2       2       2
+
+6   fireAltar           6
+    0   grass               1
+        0   grassFireAltar      432 360 70      70      2   2       2       2
+
+    1   castle              1
+        0   castleFireAltar     432 360 70      70      2   2       2       2
+
+    2   dirt                1
+        0   dirtFireAltar       432 360 70      70      2   2       2       2
+
+    3   sand                1
+        0   sandFireAltar       432 360 70      70      2   2       2       2
+
+    4   snow                1
+        0   snowFireAltar       432 360 70      70      2   2       2       2
+
+    5   stone               1
+        0   stoneFireAltar      432 360 70      70      2   2       2       2
+
+7   WaterAltar          6
+    0   grass               1
+        0   grassWaterAltar     432 504 70      70      2   2       2       2
+
+    1   castle              1
+        0   castleWaterAltar    432 504 70      70      2   2       2       2
+
+    2   dirt                1
+        0   dirtWaterAltar      432 504 70      70      2   2       2       2
+
+    3   sand                1
+        0   sandWaterAltar      432 504 70      70      2   2       2       2
+
+    4   snow                1
+        0   snowWaterAltar      432 504 70      70      2   2       2       2
+
+    5   stone               1
+        0   stoneWaterAltar     432 504 70      70      2   2       2       2
+
+8   AirAltar            6
+    0   grass               1
+        0   grassAirAltar       72  576 70      70      2   2       2       2
+
+    1   castle              1
+        0   castleAirAltar      72  576 70      70      2   2       2       2
+
+    2   dirt                1
+        0   dirtAirAltar        72  576 70      70      2   2       2       2
+
+    3   sand                1
+        0   sandAirAltar        72  576 70      70      2   2       2       2
+
+    4   snow                1
+        0   snowAirAltar        72  576 70      70      2   2       2       2
+
+    5   stone               1
+        0   stoneAirAltar       72  576 70      70      2   2       2       2
+
+9   EarthAltar          6
+    0   grass               1
+        0   grassEarthAltar     432 288 70      70      2   2       2       2
+
+    1   castle              1
+        0   castleEarthAltar    432 288 70      70      2   2       2       2
+
+    2   dirt                1
+        0   dirtEarthAltar      432 288 70      70      2   2       2       2
+
+    3   sand                1
+        0   sandEarthAltar      432 288 70      70      2   2       2       2
+
+    4   snow                1
+        0   snowEarthAltar      432 288 70      70      2   2       2       2
+
+    5   stone               1
+        0   stoneEarthAltar     432 288 70      70      2   2       2       2
+
+    id  name                    x   y   width   height  up  right   down    left

@@ -11,9 +11,15 @@ enum typeCollision
     //l'ordre indique la priorité dans le retour lors d'une collision multiple
     AucuneCollision=0,
     CollisionCle = 1<<0,
-    CollisionFinNiveau = 1<<1,
-    Collision = 1<<2,
-    CollisionMortel = 1<<3
+    CollisionFireAltar = 1<<1,
+    CollisionWaterAltar = 1<<2,
+    CollisionEarthAltar = 1<<3,
+    CollisionAirAltar = 1<<4,
+    CollisionNullAltar = 1<<5,
+    CollisionFinNiveau = 1<<6,
+    Collision = 1<<7,
+    CollisionMortel = 1<<8,
+    CollisionFeu = 1<<9
 };
 
 

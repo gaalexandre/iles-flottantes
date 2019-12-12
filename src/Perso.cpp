@@ -3,14 +3,15 @@
 #include "PersoSystem.h"
 #include "PlayerPhysic.h"
 
+
 //#include "PersoSystem.h"
 //#include "PersoPhysic.h"
 #include <fstream>
 #include <iostream>
 
-Perso::Perso(std::string filename, double xBegin, double yBegin)
+Perso::Perso(std::string filename, double xBegin, double yBegin, Map  *map)
 {
-    
+ 
   m_transform.scale(sf::Vector2f(0.7f,0.7f));
   std::ifstream file(filename);
   std::string textureFilename, name;
@@ -40,13 +41,12 @@ Perso::Perso(std::string filename, double xBegin, double yBegin)
     
   PlayerPhysic* t = new PlayerPhysic(&m_transform,0,0,L,l,0.7f,&m_persoEtat, &m_animation,xBegin,yBegin);
   m_physicComponent = t;
-  m_systemComponent = new PersoSystem(&m_persoEtat, &m_animation);
+  m_systemComponent = new PersoSystem(&m_persoEtat, &m_animation, map);
     
     
     
   //m_physicComponent=new PersoPhysic;
   //m_systemComponent=new PersoSystem;
-  
 }
 
 

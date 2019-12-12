@@ -3,6 +3,16 @@
 
 #include <string>
 #include "GameComponent.h"
+#include "Map.h"
+
+enum power{
+  null=0,
+  air=1,
+  fire=2,
+  water=3,
+  earth=4
+};
+
 
 struct PersoEtatSystem
 {
@@ -12,14 +22,20 @@ struct PersoEtatSystem
     bool surLeSol = false;
     
     int sonCollision = 0;
-    
-    
+  
+  int x = 0;
+  int y = 0;
+  
+  float height = 0;
+  float width = 0;
     
     bool cle = false;
     bool saut = false;
     bool resetCoord = false;
     short int deplacementX = 0;
     short int deplacementY = 0;
+
+    power actualPower = null;
 };
 
 enum states{
@@ -38,13 +54,14 @@ struct PersoAnimation
   states state = walk;
   int clock = 0;
   int direction = 0;
+  power actualPower=null;
 };
 
 
 class Perso : public GameComponent
 {
 public:
-  Perso(std::string filename, double xBegin, double yBegin);
+  Perso(std::string filename, double xBegin, double yBegin, Map  *map);
   bool hasFinishedLevel();
 
     sf::Vector2f getCoord();
@@ -57,6 +74,8 @@ private:
   sf::Transform m_transform;
   PersoEtatSystem m_persoEtat;
   PersoAnimation m_animation;
+  
+  
 
 };
 

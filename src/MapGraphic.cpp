@@ -2,50 +2,46 @@
 #include <fstream>
 #include <iostream>
 
+
+
 MapGraphic::MapGraphic(const std::string& textureInfoFilename, const std::string& backgroundFilename, int height, int width, int tileSize, const int* tiles, int worldType)
 {
+    m_tileSize =  tileSize;
+    m_width = width;
+    m_height = height;
+  
     std::ifstream textureInfo(textureInfoFilename);
-    typedef struct {
-        int id;
-        std::string name;
-        int x;
-        int y;
-        int width;
-        int height;
-        int up;
-        int right;
-        int down;
-        int left;
-    } tile;
+    
+    
 
     std::string textureFilename, name;
-    int nbTypesOfTiles, nbTexturesTypes, nbTextures, id;
+    int  id;
     tile tileA;
 
-    textureInfo >> textureFilename >> nbTypesOfTiles;
+    textureInfo >> textureFilename >> m_nbTypesOfTiles;
 
-    tile*** tileList = new tile**[nbTypesOfTiles];
+    m_tileList = new tile**[m_nbTypesOfTiles];
     
-    for (int i=0; i<nbTypesOfTiles; ++i){
-        textureInfo >> id >> name >> nbTexturesTypes;
-        tileList[i] = new tile*[nbTexturesTypes];
+    for (int i=0; i<m_nbTypesOfTiles; ++i){
+        textureInfo >> id >> name >> m_nbTexturesTypes;
+        m_tileList[i] = new tile*[m_nbTexturesTypes];
 
-        for (int j=0; j<nbTexturesTypes; ++j){
-            textureInfo >> id >> name >> nbTextures;
-            tileList[i][j] = new tile[nbTextures];
+        for (int j=0; j<m_nbTexturesTypes; ++j){
+            textureInfo >> id >> name >> m_nbTextures;
+            m_tileList[i][j] = new tile[m_nbTextures];
 
             //std::cout << name << " " << i << " " << j << "\n";
 
-            for (int k=0; k<nbTextures; ++k){
+            for (int k=0; k<m_nbTextures; ++k){
                 textureInfo >> tileA.id >> tileA.name >> tileA.x >> tileA.y >> tileA.width >> tileA.height >> tileA.up >> tileA.right >> tileA.down >> tileA.left;
                 //std::cout << tileA.name << " " << i << " " << j << " " << k << "\n";
-                tileList[i][j][k] = tileA;
+                m_tileList[i][j][k] = tileA;
             }
         }
     }
-    
-
-    
+  
+  
+  
     m_tileset.loadFromFile(textureFilename);
     m_tilesetBackground.loadFromFile(backgroundFilename);
     m_vertices.setPrimitiveType(sf::Quads);
@@ -72,7 +68,7 @@ MapGraphic::MapGraphic(const std::string& textureInfoFilename, const std::string
             int tileNumber = tiles[i + j * width];
 
             for(int k = 0; ;++k){
-                tileA = tileList[tileNumber][worldType][k];
+                tileA = m_tileList[tileNumber][worldType][k];
                 if((tileA.up==1 && j > 0 && tiles[i + (j-1) * width]!=tileNumber ) ||
                     (tileA.up==0 && j > 0 && tiles[i + (j-1) * width]==tileNumber ) ||
                     (tileA.down==1 && j < height && tiles[i + (j+1) * width]!=tileNumber ) ||
@@ -118,4 +114,35 @@ void MapGraphic::update(sf::Time t)
 {
     // Le MapGraphic n'est pas un component dynamique
     return;
+}
+
+
+
+void MapGraphic::change(sf::Vector2f point, int changement)
+{
+  
+  // 0,0,0 ?
+  int width = m_tileList[1][0][0].width;
+  int height = m_tileList[1][0][0].height;
+  
+  
+  tile tileA = m_tileList[changement][0][0];
+  
+  
+ 
+  int i = point.x / m_tileSize;
+  int j = point.y / m_tileSize;
+  
+  std::cout << i << std::endl;
+  std::cout << j << std::endl;
+  
+  sf::Vertex* quad = &m_vertices[(j*m_width+i)*4];
+  
+  
+  
+  quad[0].texCoords = sf::Vector2f(tileA.x, tileA.y);
+  quad[1].texCoords = sf::Vector2f(tileA.x + tileA.width, tileA.y);
+  quad[2].texCoords = sf::Vector2f(tileA.x + tileA.width, tileA.y + tileA.height);
+  quad[3].texCoords = sf::Vector2f(tileA.x, tileA.y + tileA.height);
+  
 }

@@ -1,10 +1,11 @@
 #include "SystemModule.h"
 #include "Perso.h"
 #include <SFML/Window.hpp>
+#include <iostream>
 
 bool SystemModule::addComponent(SystemComponent &component)
 {
-    m_components.push_front(&component);
+  m_components.push_front(&component);
     
   return true;
 }
@@ -15,7 +16,6 @@ void SystemModule::manageEvent(sf::Event event)
     {
         (*it)->manageEvent(event);
     }
-  
 }
 
 void SystemModule::unload()

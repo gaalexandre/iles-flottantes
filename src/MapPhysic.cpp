@@ -82,7 +82,11 @@ int MapPhysic::intersect(sf::FloatRect rect)
                             retour |= Collision;
                             break;
                         case 2 :
-                            retour |= CollisionMortel;
+                        if(Tile.contains(rect.left+rect.width/2,
+                                         rect.top+0.8*rect.height))
+                        {
+                            retour |= CollisionFeu;
+                        }
                             break;
                         case 3 :
                             
@@ -90,15 +94,58 @@ int MapPhysic::intersect(sf::FloatRect rect)
                                              rect.top+0.8*rect.height))
                             {
                                 retour |= CollisionFinNiveau;
-                                std::cout << "fin\n";
+
+                                //std::cout << "fin\n";
                             }
                             break;
                         case 4 :
                             if(Tile.contains(rect.left+rect.width/2,
                                              rect.top+0.8*rect.height))
                             {
-                                std::cout << "cle\n";
+
+                                //std::cout << "cle\n";
+
                                 retour |= CollisionCle;
+                            }
+                            break;
+                        case 5 :
+                            if(Tile.contains(rect.left+rect.width/2,
+                                             rect.top+0.8*rect.height))
+                            {
+                                //std::cout << "nullAltar\n";
+                                retour |= CollisionNullAltar;
+                            }
+                            break;
+                        case 6 :
+                            if(Tile.contains(rect.left+rect.width/2,
+                                             rect.top+0.8*rect.height))
+                            {
+                                //std::cout << "fireAltar\n";
+                                retour |= CollisionFireAltar;
+                            }
+                            break;
+                        case 7 :
+                            if(Tile.contains(rect.left+rect.width/2,
+                                             rect.top+0.8*rect.height))
+                            {
+                                //std::cout << "waterAltar\n";
+                                retour |= CollisionWaterAltar;
+                            }
+                            break;
+                        case 8 :
+                            if(Tile.contains(rect.left+rect.width/2,
+                                             rect.top+0.8*rect.height))
+                            {
+                                //std::cout << "airAltar\n";
+                                retour |= CollisionAirAltar;
+                            }
+                            break;
+                        case 9 :
+                            if(Tile.contains(rect.left+rect.width/2,
+                                             rect.top+0.8*rect.height))
+                            {
+                                //std::cout << "earthAltar\n";
+                                retour |= CollisionEarthAltar;
                             }
                             break;
                         default:

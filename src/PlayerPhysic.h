@@ -7,6 +7,10 @@
 #include "Perso.h"
 #include <SFML/System.hpp>
 
+
+
+
+
 #include <stdio.h>
 
 class PlayerPhysic : public PhysicComponent
@@ -42,8 +46,14 @@ protected:
     
     float m_transfX{0};
     float m_transfY{0};
-    
-    
+
+    const int sizeDeplacement{2000};
+    const int sizeJump{-700};
+    const int gravite{1300};
+    const int vitesseLimiteGravite{10000};
+
+    const int airPowerFactor{2};
+    const double deceleration{200};
     float m_vitesseX{0};
     float m_vitesseY{0};
     

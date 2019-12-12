@@ -3,7 +3,13 @@
 
 #include <string>
 #include "GameComponent.h"
+#include "MapGraphic.h"
 
+struct MapEtatSystem
+{
+  
+  
+};
 class Map : public GameComponent
 {
 
@@ -11,8 +17,15 @@ class Map : public GameComponent
   Map(std::string filename);
   virtual ~Map();
   
+  bool change(sf::Vector2f point, int changementGraphic, int changementKind);
+  int typeBloc(sf::Vector2f point);
+  
+  
  private:
-  int** m_tilesKind{nullptr}; //il est là juste pour être delete dans le destructeur
+  int** m_tilesKind{nullptr};
+  int m_height;
+  int m_width;
+  int m_tileSize;
   
 };
 

@@ -15,7 +15,7 @@ CFLAGS=-Wall -Wextra -std=c++17
 EXECNAME=sfml-app
 LIBSFML=-lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
-#OBJECT=main.o Jeu.o GraphicModule.o PhysicModule.o SystemModule.o Map.o MapGraphic.o MapPhysic.o GameComponent.o PhysicComponent.o
+#OBJECT=main.o Jeu.o GraphicModule.o PhysicModule.o SystemModule.o Map.o MapGraphic.o MapPhysic.o GameComponent.o PhysicComponent.o Menu.o MenuGraphic.o MenuSystem.o
 RESOURCES=$(shell cd $(RES_DIR); find -type f)
 DIR_IN_RESOURCES=$(shell cd $(RES_DIR); find -type d)
 AUDIORESOURCES=$(shell ls $(RES_DIR))

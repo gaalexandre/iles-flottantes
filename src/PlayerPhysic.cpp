@@ -3,9 +3,10 @@
 #include <iostream>
 
 PlayerPhysic::PlayerPhysic(sf::Transform *t,float x, float y, float width, float height, float scale, PersoEtatSystem* persoEtat, PersoAnimation *animation, double xBegin, double yBegin)
-:  m_hitBox(x,y, scale*width, scale*height),m_transform (*t), m_persoEtat(*persoEtat), m_scale(scale), m_animation{*animation}, m_xBegin(xBegin), m_yBegin(yBegin)
+  :  m_hitBox(x,y, scale*width-10, scale*height),m_transform (*t), m_persoEtat(*persoEtat), m_scale(scale), m_animation{*animation}, m_xBegin(xBegin), m_yBegin(yBegin)
 {
-    
+  m_persoEtat.height = height;
+  m_persoEtat.width = width;
 }
 
 void PlayerPhysic::update(const sf::Time t) // bouge selon les accelaration.
@@ -15,18 +16,20 @@ void PlayerPhysic::update(const sf::Time t) // bouge selon les accelaration.
     //gestion de la gravité
     if(not m_persoEtat.surLeSol)
     {
-        addVitesse(0,180*t.asSeconds());
+        addVitesse(0,gravite*t.asSeconds());
         
         
-        if(m_vitesseY>450) // vitesse limite
+        if(m_vitesseY>vitesseLimiteGravite) // vitesse limite
         {
-            m_vitesseY=450;
+
+            m_vitesseY=vitesseLimiteGravite;
+
         }
     }
     
     //gestion des déplacements du system
-    setVitesseX(m_persoEtat.deplacementX*100);
-
+    m_vitesseX+=m_persoEtat.deplacementX*sizeDeplacement*(m_persoEtat.actualPower==air?airPowerFactor:1)*t.asSeconds();
+    m_vitesseX/=1+(3*t.asSeconds());
     if(m_persoEtat.deplacementX)
     {
         m_animation.frame = m_animation.state == walk ? m_animation.frame : 0;
@@ -38,6 +41,7 @@ void PlayerPhysic::update(const sf::Time t) // bouge selon les accelaration.
         m_animation.frame = m_animation.state == stand ? m_animation.frame : 0;
         m_animation.state = stand;
     }
+    
     
     //gestion du saut
     if(m_persoEtat.saut)
@@ -73,6 +77,11 @@ void PlayerPhysic::update(const sf::Time t) // bouge selon les accelaration.
     m_transfY =m_vitesseY*( t.asSeconds())+10*t.asSeconds();
     m_hitBox.left += m_scale*m_transfX;
     m_hitBox.top += m_scale*m_transfY;
+  
+  
+  m_persoEtat.x = m_hitBox.left;
+  m_persoEtat.y = m_hitBox.top;
+  
     return;
     
 }
@@ -87,7 +96,37 @@ void PlayerPhysic::collide(PhysicComponent &other)
     
     //gerer les collisions particulières :
     int typeCollision = other.intersect(m_hitBox);
-    std::cout << typeCollision << std::endl;
+    //std::cout << typeCollision << std::endl;
+
+    if((typeCollision&CollisionFireAltar) != 0)
+    {
+        m_persoEtat.actualPower = fire;
+    }
+    if((typeCollision&CollisionWaterAltar) != 0)
+    {
+        m_persoEtat.actualPower = water;
+    }
+    if((typeCollision&CollisionAirAltar) != 0)
+    {
+        m_persoEtat.actualPower = air;
+    }
+    if((typeCollision&CollisionEarthAltar) != 0)
+    {
+        m_persoEtat.actualPower = earth;
+    }
+    if((typeCollision&CollisionNullAltar) != 0)
+    {
+        m_persoEtat.actualPower = null;
+    }
+
+    m_animation.actualPower = m_persoEtat.actualPower;
+
+    if((typeCollision&CollisionFeu) != 0)
+    {
+        if(m_persoEtat.actualPower!=water)
+            m_persoEtat.contactMortel = true;
+    }
+  
     if((typeCollision&CollisionMortel) != 0)
     {
         m_persoEtat.contactMortel = true;
@@ -99,6 +138,10 @@ void PlayerPhysic::collide(PhysicComponent &other)
             m_persoEtat.contactFinNiveau = true;
         }
     }
+    
+    
+    
+    
     if((typeCollision&CollisionCle) !=0 && m_persoEtat.sonCollision != -1)
     {
         m_persoEtat.cle = true;
@@ -109,7 +152,7 @@ void PlayerPhysic::collide(PhysicComponent &other)
     {
         if( m_persoEtat.surLeSol)
         {
-            //m_persoEtat.sonCollision=1;
+            m_persoEtat.sonCollision=1;
         }
         
         m_transform.translate( -1*m_transfX, 0);
@@ -251,8 +294,9 @@ void PlayerPhysic::saut()
 {
     if(m_persoEtat.surLeSol)
     {
-        setVitesseY(-220);
-        m_persoEtat.surLeSol=false;
+      setVitesseY(sizeJump);
+      
+      m_persoEtat.surLeSol=false;
     }
     m_persoEtat.saut = false;
 }
